@@ -1,9 +1,21 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namalyzer", "Namalyzer\Namalyzer.csproj", "{2A9EDEFB-4C92-440B-A6F8-32FD7AF7D06E}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "LogReader", "AccessAnalyzer\LogReader\LogReader.shproj", "{253B00F7-8866-4E8E-AEF2-912BAC236936}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RefererAnalyzer", "AccessAnalyzer\RefererAnalyzer\RefererAnalyzer.shproj", "{3E8646B8-48A8-4B8B-BEC4-07EC6F250B00}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		AccessAnalyzer\LogReader\LogReader.projitems*{253b00f7-8866-4e8e-aef2-912bac236936}*SharedItemsImports = 13
+		AccessAnalyzer\LogReader\LogReader.projitems*{2a9edefb-4c92-440b-a6f8-32fd7af7d06e}*SharedItemsImports = 4
+		AccessAnalyzer\RefererAnalyzer\RefererAnalyzer.projitems*{2a9edefb-4c92-440b-a6f8-32fd7af7d06e}*SharedItemsImports = 4
+		AccessAnalyzer\RefererAnalyzer\RefererAnalyzer.projitems*{3e8646b8-48a8-4b8b-bec4-07ec6f250b00}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
