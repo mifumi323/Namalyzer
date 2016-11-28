@@ -2,12 +2,13 @@ using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
-namespace Namalyzer
+namespace MifuminLib.AccessAnalyzer
 {
     /// <summary>
-    /// ãƒ­ã‚°ã®ä¸€è¡Œã«ç›¸å½“ã™ã‚‹
-    /// ã‚ªãƒªã‚¸ãƒŠãƒ«ã®ãƒ†ã‚­ã‚¹ãƒˆã¯ä¿æŒã•ã‚Œãªã„ã®ã§æ³¨æ„
+    /// ƒƒO‚Ìˆês‚É‘Š“–‚·‚é
+    /// ƒIƒŠƒWƒiƒ‹‚ÌƒeƒLƒXƒg‚Í•Û‚³‚ê‚È‚¢‚Ì‚Å’ˆÓ
     /// </summary>
     public class Log
     {
@@ -16,57 +17,57 @@ namespace Namalyzer
 
         public LogFile parent;
 
-        /// <summary>ãƒ›ã‚¹ãƒˆåorIP</summary>
+        /// <summary>ƒzƒXƒg–¼orIP</summary>
         public string strHost;
         public string Host { get { return strHost; } set { strHost = value; } }
-        /// <summary>ãƒªãƒ¢ãƒ¼ãƒˆãƒ­ã‚°å</summary>
+        /// <summary>ƒŠƒ‚[ƒgƒƒO–¼</summary>
         public string strRemoteLog;
         public string RemoteLog { get { return strRemoteLog; } set { strRemoteLog = value; } }
-        /// <summary>ãƒ¦ãƒ¼ã‚¶ãƒ¼å</summary>
+        /// <summary>ƒ†[ƒU[–¼</summary>
         public string strUser;
         public string User { get { return strUser; } set { strUser = value; } }
-        /// <summary>æ—¥ä»˜(DateTimeã¨ã—ãªã„ã®ã¯æ¤œç´¢ã®é«˜é€ŸåŒ–ã®ãŸã‚)</summary>
+        /// <summary>“ú•t(DateTime‚Æ‚µ‚È‚¢‚Ì‚ÍŒŸõ‚Ì‚‘¬‰»‚Ì‚½‚ß)</summary>
         public long lDate;
         public string Date { get { return (new DateTime(lDate)).ToString("yyyy/MM/dd HH:mm:ss"); } }
-        /// <summary>ãƒ¡ã‚½ãƒƒãƒ‰</summary>
+        /// <summary>ƒƒ\ƒbƒh</summary>
         public EMethod eMethod;
         public EMethod Method { get { return eMethod; } set { eMethod = value; } }
-        /// <summary>ãƒªã‚¯ã‚¨ã‚¹ãƒˆå…ˆ</summary>
+        /// <summary>ƒŠƒNƒGƒXƒgæ</summary>
         public string strRequested;
         public string Requested { get { return strRequested; } set { strRequested = value; } }
-        /// <summary>HTTPã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³</summary>
+        /// <summary>HTTP‚Ìƒo[ƒWƒ‡ƒ“</summary>
         public EHTTP eHTTP;
         public string HTTP { get { return (eHTTP == EHTTP.HTTP10) ? "HTTP 1.0" : "HTTP 1.1"; } set { eHTTP = (value == "HTTP 1.0") ? EHTTP.HTTP10 : EHTTP.HTTP11; } }
-        /// <summary>ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰</summary>
+        /// <summary>ƒXƒe[ƒ^ƒXƒR[ƒh</summary>
         public short sStatus = 0;
         public short Status { get { return sStatus; } set { sStatus = value; } }
-        /// <summary>è»¢é€é‡</summary>
+        /// <summary>“]‘——Ê</summary>
         public int iSendSize = 0;
         public int SendSize { get { return iSendSize; } set { iSendSize = value; } }
-        /// <summary>å‚ç…§å…ƒ</summary>
+        /// <summary>QÆŒ³</summary>
         public string strReferer;
         public string Referer { get { return strReferer; } set { strReferer = value; } }
-        /// <summary>ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆ</summary>
+        /// <summary>ƒ†[ƒU[ƒG[ƒWƒFƒ“ƒg</summary>
         public string strUserAgent;
         public string UserAgent { get { return strUserAgent; } set { strUserAgent = value; } }
     }
 
-    /// <summary>ä¸€ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®å…¨ã¦ã®ãƒ­ã‚°ã‚’æ ¼ç´ã™ã‚‹</summary>
+    /// <summary>ˆêƒtƒ@ƒCƒ‹“à‚Ì‘S‚Ä‚ÌƒƒO‚ğŠi”[‚·‚é</summary>
     public class LogFile
     {
         public string FileName;
         public Log[] LogList = new Log[0];
         private volatile bool canceled = false;
 
-        /// <summary>ç‰¹å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã</summary>
-        /// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
-        /// <param name="option">èª­ã¿è¾¼ã¿ã‚ªãƒ—ã‚·ãƒ§ãƒ³</param>
-        /// <returns>æœ€å¾Œã¾ã§èª­ã¿è¾¼ã‚“ã ã‹ã©ã†ã‹</returns>
+        /// <summary>“Á’è‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚­</summary>
+        /// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
+        /// <param name="option">“Ç‚İ‚İƒIƒvƒVƒ‡ƒ“</param>
+        /// <returns>ÅŒã‚Ü‚Å“Ç‚İ‚ñ‚¾‚©‚Ç‚¤‚©</returns>
         public bool Read(string filename, LogReadOption option)
         {
             canceled = false;
             FileName = filename;
-            char[] array = new char[GetBufferSize(option)];
+            var array = new byte[GetBufferSize(option)];
             int size, buffersize;
             int day, month, year, hour, minute, second;
             byte buf, old;
@@ -88,45 +89,45 @@ namespace Namalyzer
                         failed = false;
                         l = new Log();
                         l.parent = this;
-                        // ãƒ›ã‚¹ãƒˆ/IP
+                        // ƒzƒXƒg/IP
                         size = 0; buffersize = option.hostBuffer;
                         while (true)
                         {
                             buf = binReader.ReadByte();
-                            if (buf == ' ') { l.Host = new string(array, 0, size); break; }
+                            if (buf == ' ') { l.Host = GetString(array, 0, size); break; }
                             else if (buf == '\n' || buf == '\r') { failed = true; break; }
-                            if (size < buffersize) array[size++] = (char)buf;
+                            if (size < buffersize) array[size++] = buf;
                         }
                         if (failed) continue;
-                        // ãƒªãƒ¢ãƒ¼ãƒˆãƒ­ã‚°å
+                        // ƒŠƒ‚[ƒgƒƒO–¼
                         size = 0; buffersize = option.remoteLogBuffer;
                         while (true)
                         {
                             buf = binReader.ReadByte();
-                            if (buf == ' ') { l.RemoteLog = new string(array, 0, size); break; }
+                            if (buf == ' ') { l.RemoteLog = GetString(array, 0, size); break; }
                             else if (buf == '\n' || buf == '\r') { failed = true; break; }
-                            if (size < buffersize) array[size++] = (char)buf;
+                            if (size < buffersize) array[size++] = buf;
                         }
                         if (failed) continue;
-                        // ãƒ¦ãƒ¼ã‚¶ãƒ¼å
+                        // ƒ†[ƒU[–¼
                         size = 0; buffersize = option.userBuffer;
                         while (true)
                         {
                             buf = binReader.ReadByte();
-                            if (buf == ' ') { l.User = new string(array, 0, size); break; }
+                            if (buf == ' ') { l.User = GetString(array, 0, size); break; }
                             else if (buf == '\n' || buf == '\r') { failed = true; break; }
-                            if (size < buffersize) array[size++] = (char)buf;
+                            if (size < buffersize) array[size++] = buf;
                         }
                         if (failed) continue;
-                        // æ™‚åˆ»(æ‰‹æŠœãã§ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã—ã¦ãªã„)
+                        // (è”²‚«‚ÅƒGƒ‰[ƒ`ƒFƒbƒN‚µ‚Ä‚È‚¢)
                         size = 0;
                         binReader.ReadByte();   // '['
-                        day = (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // æ—¥
+                        day = (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // “ú
                         binReader.ReadByte();   // '/'
-                        // æœˆ(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
-                        array[0] = (char)binReader.ReadByte();
-                        array[1] = (char)binReader.ReadByte();
-                        array[2] = (char)binReader.ReadByte();
+                        // Œ(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
+                        array[0] = binReader.ReadByte();
+                        array[1] = binReader.ReadByte();
+                        array[2] = binReader.ReadByte();
                         if (array[0] == 'D') { month = 12; }        // Dec
                         else if (array[0] == 'F') { month = 2; }    // Feb
                         else if (array[0] == 'N') { month = 11; }   // Nov
@@ -142,17 +143,17 @@ namespace Namalyzer
                         else { month = 0; }
                         binReader.ReadByte();   // '/'
                         year = (binReader.ReadByte() - '0') * 1000 + (binReader.ReadByte() - '0') * 100
-                            + (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // å¹´
+                            + (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // ”N
                         binReader.ReadByte();   // ':'
-                        hour = (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // æ™‚
+                        hour = (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // 
                         binReader.ReadByte();   // ':'
-                        minute = (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // åˆ†
+                        minute = (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // •ª
                         binReader.ReadByte();   // ':'
-                        second = (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // ç§’
+                        second = (binReader.ReadByte() - '0') * 10 + (binReader.ReadByte() - '0'); // •b
                         binReader.ReadBytes(9);   // ' +0900] "'
                         try { l.lDate = (new DateTime(year, month, day, hour, minute, second)).Ticks; }
                         catch (ArgumentOutOfRangeException) { l.lDate = 0; }
-                        // ãƒ¡ã‚½ãƒƒãƒ‰
+                        // ƒƒ\ƒbƒh
                         buf = binReader.ReadByte();
                         if (buf == 'G') { l.eMethod = Log.EMethod.GET; }
                         else if (buf == 'P')
@@ -171,21 +172,21 @@ namespace Namalyzer
                         else if (buf == 'U') { l.eMethod = Log.EMethod.UNLINK; }
                         else { l.eMethod = Log.EMethod.UNKNOWN; }
                         while (binReader.ReadByte() != ' ') { }
-                        // ãƒªã‚¯ã‚¨ã‚¹ãƒˆå…ˆ
+                        // ƒŠƒNƒGƒXƒgæ
                         size = 0; buffersize = option.requestedBuffer;
                         while (true)
                         {
                             buf = binReader.ReadByte();
-                            if (buf == ' ') { l.Requested = new string(array, 0, size); break; }
+                            if (buf == ' ') { l.Requested = GetString(array, 0, size); break; }
                             else if (buf == '\n' || buf == '\r') { failed = true; break; }
-                            if (size < buffersize) array[size++] = (char)buf;
+                            if (size < buffersize) array[size++] = buf;
                         }
                         if (failed) continue;
-                        // HTTP(ã‚„ã£ã±ã‚Šæ‰‹æŠœãã§ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ãªã—)
+                        // HTTP(‚â‚Á‚Ï‚èè”²‚«‚ÅƒGƒ‰[ƒ`ƒFƒbƒN‚È‚µ)
                         binReader.ReadBytes(7);   // 'HTTP/1.'
                         l.eHTTP = binReader.ReadByte() == '0' ? Log.EHTTP.HTTP10 : Log.EHTTP.HTTP11;
                         binReader.ReadBytes(2);   // '" '
-                        // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰
+                        // ƒXƒe[ƒ^ƒXƒR[ƒh
                         while (true)
                         {
                             buf = binReader.ReadByte();
@@ -194,7 +195,7 @@ namespace Namalyzer
                             else if (buf == '\n' || buf == '\r') { failed = true; break; }
                         }
                         if (failed) continue;
-                        // è»¢é€é‡
+                        // “]‘——Ê
                         while (true)
                         {
                             buf = binReader.ReadByte();
@@ -202,8 +203,8 @@ namespace Namalyzer
                             else if (buf == ' ') { break; }
                             else if (buf == '\n' || buf == '\r')
                             {
-                                // ã“ã“ã§ã®å¤±æ•—ã®ã¿ç‰¹åˆ¥ãªå‡¦ç†ã‚’ã™ã‚‹
-                                // (combinedã¨ã—ã¦ã¯å¤±æ•—ã ãŒcommonã¨ã—ã¦ã¯æˆåŠŸ)
+                                // ‚±‚±‚Å‚Ì¸”s‚Ì‚İ“Á•Ê‚Èˆ—‚ğ‚·‚é
+                                // (combined‚Æ‚µ‚Ä‚Í¸”s‚¾‚ªcommon‚Æ‚µ‚Ä‚Í¬Œ÷)
                                 l.Referer = "";
                                 l.UserAgent = "";
                                 failed = true;
@@ -211,30 +212,30 @@ namespace Namalyzer
                             }
                         }
                         if (failed) continue;
-                        // ãƒªãƒ•ã‚¡ãƒ©
+                        // ƒŠƒtƒ@ƒ‰
                         binReader.ReadByte();   // '"'
                         size = 0; buffersize = option.refererBuffer;
                         old = 0;
                         while (true)
                         {
                             buf = binReader.ReadByte();
-                            if (buf == '"' && old != '\\') { l.Referer = new string(array, 0, size); break; }
+                            if (buf == '"' && old != '\\') { l.Referer = GetString(array, 0, size); break; }
                             else if (buf == '\n' || buf == '\r') { failed = true; break; }
-                            if (size < buffersize) array[size++] = (char)buf;
+                            if (size < buffersize) array[size++] = buf;
                             old = buf;
                         }
                         if (failed) continue;
                         binReader.ReadByte();   // ' '
-                        // ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆ
+                        // ƒ†[ƒU[ƒG[ƒWƒFƒ“ƒg
                         binReader.ReadByte();   // '"'
                         size = 0; buffersize = option.userAgentBuffer;
                         old = 0;
                         while (true)
                         {
                             buf = binReader.ReadByte();
-                            if (buf == '"' && old != '\\') { l.UserAgent = new string(array, 0, size); break; }
+                            if (buf == '"' && old != '\\') { l.UserAgent = GetString(array, 0, size); break; }
                             else if (buf == '\n' || buf == '\r') { failed = true; break; }
-                            if (size < buffersize) array[size++] = (char)buf;
+                            if (size < buffersize) array[size++] = buf;
                             old = buf;
                         }
                         if (failed) continue;
@@ -251,9 +252,27 @@ namespace Namalyzer
             return !canceled;
         }
 
-        /// <summary>ã™ã§ã«é–‹ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¨­å®šã‚’å¤‰ãˆã¦èª­ã¿ç›´ã™</summary>
-        /// <param name="option">èª­ã¿è¾¼ã¿ã‚ªãƒ—ã‚·ãƒ§ãƒ³</param>
-        /// <returns>æœ€å¾Œã¾ã§èª­ã¿è¾¼ã‚“ã ã‹ã©ã†ã‹</returns>
+        private string GetString(byte[] array, int offset, int size)
+        {
+            var sb = new StringBuilder();
+            for (int i = offset; i < offset + size; i++)
+            {
+                var b = array[i];
+                if (0x20 <= b && b < 0x7f)
+                {
+                    sb.Append((char)b);
+                }
+                else
+                {
+                    sb.AppendFormat("%{0:x}", b);
+                }
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>‚·‚Å‚ÉŠJ‚¢‚½ƒtƒ@ƒCƒ‹‚ğİ’è‚ğ•Ï‚¦‚Ä“Ç‚İ’¼‚·</summary>
+        /// <param name="option">“Ç‚İ‚İƒIƒvƒVƒ‡ƒ“</param>
+        /// <returns>ÅŒã‚Ü‚Å“Ç‚İ‚ñ‚¾‚©‚Ç‚¤‚©</returns>
         public bool Reload(LogReadOption option)
         { return Read(FileName, option); }
 
@@ -262,7 +281,7 @@ namespace Namalyzer
 
         private int GetBufferSize(LogReadOption option)
         {
-            int size = 3;   // æœ€ä½ã§ã‚‚3ãƒã‚¤ãƒˆã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹
+            int size = 3;   // Å’á‚Å‚à3ƒoƒCƒg‚Ìƒoƒbƒtƒ@‚ğg—p‚·‚é
             if (size < option.hostBuffer) size = option.hostBuffer;
             if (size < option.remoteLogBuffer) size = option.remoteLogBuffer;
             if (size < option.userBuffer) size = option.userBuffer;
@@ -275,38 +294,38 @@ namespace Namalyzer
 
     public class LogReadOption
     {
-        public int hostBuffer = 255;        // æœ‰åŠ¹ãªãƒ›ã‚¹ãƒˆåã¯255æ–‡å­—ä»¥ä¸‹
-        public int remoteLogBuffer = 256;   // ã‚ã‹ã‚‰ã‚“ã‘ã©å¿µã®ãŸã‚256ç”¨æ„ã—ã¨ã
-        public int userBuffer = 256;        // ã‚ã‹ã‚‰ã‚“ã‘ã©å¿µã®ãŸã‚256ç”¨æ„ã—ã¨ã
-        public int requestedBuffer = 1024;  // 1024ã‚‚èª­ã¿è¾¼ã‚ã‚Œã°å……åˆ†ã§ã—ã‚‡ã†
-        public int refererBuffer = 1024;    // 1024ã‚‚èª­ã¿è¾¼ã‚ã‚Œã°å……åˆ†ã§ã—ã‚‡ã†
-        public int userAgentBuffer = 1024;  // 1024ã‚‚èª­ã¿è¾¼ã‚ã‚Œã°å……åˆ†ã§ã—ã‚‡ã†
+        public int hostBuffer = 255;        // —LŒø‚ÈƒzƒXƒg–¼‚Í255•¶šˆÈ‰º
+        public int remoteLogBuffer = 256;   // ‚í‚©‚ç‚ñ‚¯‚Ç”O‚Ì‚½‚ß256—pˆÓ‚µ‚Æ‚­
+        public int userBuffer = 256;        // ‚í‚©‚ç‚ñ‚¯‚Ç”O‚Ì‚½‚ß256—pˆÓ‚µ‚Æ‚­
+        public int requestedBuffer = 1024;  // 1024‚à“Ç‚İ‚ß‚ê‚Î[•ª‚Å‚µ‚å‚¤
+        public int refererBuffer = 1024;    // 1024‚à“Ç‚İ‚ß‚ê‚Î[•ª‚Å‚µ‚å‚¤
+        public int userAgentBuffer = 1024;  // 1024‚à“Ç‚İ‚ß‚ê‚Î[•ª‚Å‚µ‚å‚¤
         public LogFilter filter = new LogFilterAll();
     }
 
     public delegate void UpdateFunc(Log[] logs);
 
-    /// <summary>ãƒ­ã‚°çµ±æ‹¬ã‚¯ãƒ©ã‚¹</summary>
+    /// <summary>ƒƒO“Š‡ƒNƒ‰ƒX</summary>
     public class AccessLog
     {
-        LogFile[] AllLog = new LogFile[0];  // ãƒ•ã‚¡ã‚¤ãƒ«ã”ã¨ã®ãƒ­ã‚°ã®å†…å®¹
-        Log[] Target = new Log[0];          // åŸºæœ¬çš„ã«è¡¨ç¤ºã‚„è©³ã—ã„è§£æãªã©ã¯ã“ã®Targetã«å¯¾ã—ã¦è¡Œã†
+        LogFile[] AllLog = new LogFile[0];  // ƒtƒ@ƒCƒ‹‚²‚Æ‚ÌƒƒO‚Ì“à—e
+        Log[] Target = new Log[0];          // Šî–{“I‚É•\¦‚âÚ‚µ‚¢‰ğÍ‚È‚Ç‚Í‚±‚ÌTarget‚É‘Î‚µ‚Äs‚¤
         LogFilter analyzeFilter = new LogFilterAll();
         UpdateFunc UpdateFuncs;
         Form owner;
-        LogFile NowLoading = null;          // èª­ã¿è¾¼ã¿ä¸­ã®ãƒ­ã‚°
+        LogFile NowLoading = null;          // “Ç‚İ‚İ’†‚ÌƒƒO
         LogReadOption readOption = new LogReadOption();
         public LogReadOption ReadOption
         { get { return readOption; } }
-	
+
 
         public AccessLog(Form owner)
         {
             this.owner = owner;
         }
 
-        /// <summary>ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§ãƒ­ã‚°ã«è¿½åŠ ã™ã‚‹</summary>
-        /// <param name="filenames">ãƒ•ã‚¡ã‚¤ãƒ«åã®é…åˆ—</param>
+        /// <summary>ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚ÅƒƒO‚É’Ç‰Á‚·‚é</summary>
+        /// <param name="filenames">ƒtƒ@ƒCƒ‹–¼‚Ì”z—ñ</param>
         public void Read(string[] filenames)
         {
             int nOldLength = AllLog.Length;

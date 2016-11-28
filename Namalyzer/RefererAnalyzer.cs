@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Text;
-using MifuminLib;
 
-namespace Namalyzer
+namespace MifuminLib.AccessAnalyzer
 {
-    class RefererAnalyzer
+    public class RefererAnalyzer
     {
         private enum CodePage : int
         {
@@ -17,34 +16,39 @@ namespace Namalyzer
         /// 検索サイトの検索結果のページのURLから検索に使われた言葉を抽出します。
         /// </summary>
         /// <param name="urlstring">対象となる検索ページのURL</param>
+        /// <returns>抽出した検索フレーズ(見つからなければnull)</returns>
+        public static string GetSearchPhrase(string urlstring)
+        {
+            string phrase = null;
+            if (TryGetSearchPhrase(urlstring, ref phrase))
+            {
+                return phrase;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 検索サイトの検索結果のページのURLから検索に使われた言葉を抽出します。
+        /// </summary>
+        /// <param name="urlstring">対象となる検索ページのURL</param>
         /// <param name="phrase">抽出した検索フレーズを格納する変数</param>
         /// <returns>指定したURLから検索フレーズが抽出できたかどうか</returns>
         public static bool TryGetSearchPhrase(string urlstring, ref string phrase)
-        {
-            bool ret = false;
-            if (ret = InnerTryGetSearchPhrase(urlstring, ref phrase))
-            {
-                phrase = StringConverter.ConvertNarrowWide(phrase);
-                phrase = phrase.Trim();
-            }
-            return ret;
-        }
-
-        private static bool InnerTryGetSearchPhrase(string urlstring, ref string phrase)
         {
             if (!Uri.IsWellFormedUriString(urlstring, UriKind.Absolute)) return false;
             try
             {
                 Uri uri = new Uri(urlstring);
+                if (string.IsNullOrEmpty(uri.Query)) return false;
                 string domain = uri.Host;
-                if (domain.Contains("google.co")) return GetGoogleSearchPhrase(uri.Query, ref phrase);
-                if (domain.Contains("yahoo.co")) return GetYahooSearchPhrase(uri.Query, ref phrase);
-                if (domain.Contains("msn.co") || domain.Contains("live.co") || domain.Contains("bing.co")) return GetMSNSearchPhrase(uri.Query, ref phrase);
-                if (domain.Contains("biglobe.ne")) return GetBiglobeSearchPhrase(uri.Query, ref phrase);
-                if (domain.Contains("goo.ne")) return GetGooSearchPhrase(uri.Query, ref phrase);
-                if (domain.Contains("ezsch.ezweb.ne")) return GetEzSearchPhrase(uri.Query, ref phrase);
-                if (domain.Contains("docomo.ne")) return GetDocomoSearchPhrase(uri.Query, ref phrase);
-                if (domain.Contains("search.rakuten.co")) return GetRakutenSearchPhrase(uri.Query, ref phrase);
+                if (domain.Contains("google.co")) return TryGetGoogleSearchPhrase(uri.Query, ref phrase);
+                if (domain.Contains("yahoo.co")) return TryGetYahooSearchPhrase(uri.Query, ref phrase);
+                if (domain.Contains("msn.co") || domain.Contains("live.co") || domain.Contains("bing.co")) return TryGetMSNSearchPhrase(uri.Query, ref phrase);
+                if (domain.Contains("biglobe.ne")) return TryGetBiglobeSearchPhrase(uri.Query, ref phrase);
+                if (domain.Contains("goo.ne")) return TryGetGooSearchPhrase(uri.Query, ref phrase);
+                if (domain.Contains("ezsch.ezweb.ne")) return TryGetEzSearchPhrase(uri.Query, ref phrase);
+                if (domain.Contains("docomo.ne")) return TryGetDocomoSearchPhrase(uri.Query, ref phrase);
+                if (domain.Contains("search.rakuten.co")) return TryGetRakutenSearchPhrase(uri.Query, ref phrase);
                 return false;
             }
             catch (Exception)
@@ -53,7 +57,7 @@ namespace Namalyzer
             }
         }
 
-        private static bool GetGoogleSearchPhrase(string query, ref string phrase)
+        private static bool TryGetGoogleSearchPhrase(string query, ref string phrase)
         {
             string[] array = query.Substring(1).Split('&');
             phrase = "";
@@ -87,7 +91,7 @@ namespace Namalyzer
             return false;
         }
 
-        private static bool GetYahooSearchPhrase(string query, ref string phrase)
+        private static bool TryGetYahooSearchPhrase(string query, ref string phrase)
         {
             string[] array = query.Substring(1).Split('&');
             phrase = "";
@@ -119,7 +123,7 @@ namespace Namalyzer
             return false;
         }
 
-        private static bool GetMSNSearchPhrase(string query, ref string phrase)
+        private static bool TryGetMSNSearchPhrase(string query, ref string phrase)
         {
             string[] array = query.Substring(1).Split('&');
             phrase = "";
@@ -143,7 +147,7 @@ namespace Namalyzer
             return false;
         }
 
-        private static bool GetBiglobeSearchPhrase(string query, ref string phrase)
+        private static bool TryGetBiglobeSearchPhrase(string query, ref string phrase)
         {
             string[] array = query.Substring(1).Split('&');
             phrase = "";
@@ -167,7 +171,7 @@ namespace Namalyzer
             return false;
         }
 
-        private static bool GetGooSearchPhrase(string query, ref string phrase)
+        private static bool TryGetGooSearchPhrase(string query, ref string phrase)
         {
             string[] array = query.Substring(1).Split('&');
             phrase = "";
@@ -197,7 +201,7 @@ namespace Namalyzer
             return false;
         }
 
-        private static bool GetEzSearchPhrase(string query, ref string phrase)
+        private static bool TryGetEzSearchPhrase(string query, ref string phrase)
         {
             string[] array = query.Substring(1).Split('&');
             phrase = "";
@@ -221,7 +225,7 @@ namespace Namalyzer
             return false;
         }
 
-        private static bool GetDocomoSearchPhrase(string query, ref string phrase)
+        private static bool TryGetDocomoSearchPhrase(string query, ref string phrase)
         {
             string[] array = query.Substring(1).Split('&');
             phrase = "";
@@ -245,7 +249,7 @@ namespace Namalyzer
             return false;
         }
 
-        private static bool GetRakutenSearchPhrase(string query, ref string phrase)
+        private static bool TryGetRakutenSearchPhrase(string query, ref string phrase)
         {
             string[] array = query.Substring(1).Split('&');
             phrase = "";

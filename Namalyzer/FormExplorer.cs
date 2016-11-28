@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using MifuminLib.AccessAnalyzer;
 
 namespace Namalyzer
 {

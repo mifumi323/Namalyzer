@@ -197,7 +197,7 @@
             // 
             // logBindingSource
             // 
-            this.logBindingSource.DataSource = typeof(Namalyzer.Log);
+            this.logBindingSource.DataSource = typeof(MifuminLib.AccessAnalyzer.Log);
             // 
             // FormList
             // 

@@ -1,10 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Xml;
+using System.IO;
 using System.Text;
+using System.Xml;
 
-namespace Namalyzer
+namespace MifuminLib.AccessAnalyzer
 {
     /// <summary>LogFilter派生クラスの型</summary>
     public enum ELogFilter
@@ -191,6 +191,12 @@ namespace Namalyzer
     {
         public long Min = long.MinValue, Max = long.MaxValue;
 
+        public LogFilterNumber() { }
+        public LogFilterNumber(long min, long max)
+        {
+            Min = min; Max = max;
+        }
+
         protected bool Match(long value)
         {
             return Min <= Max ?
@@ -288,6 +294,19 @@ namespace Namalyzer
         }
         public bool IgnoreCase = false;
         public MatchRule matchRule;
+
+        public LogFilterString() { }
+        public LogFilterString(string matches, bool ignoreCase, MatchRule matchRule)
+        {
+            Matches = matches;
+            IgnoreCase = ignoreCase;
+            this.matchRule = matchRule;
+        }
+        public LogFilterString(long min, long max)
+            : base(min, max)
+        {
+            matchRule = MatchRule.Length;
+        }
 
         protected bool Match(string text) { return Match(text, matchRule); }
         protected bool Match(string text, MatchRule rule)
@@ -600,11 +619,17 @@ namespace Namalyzer
             return ret + "など" + truecount.ToString() + "個の要素のどれかに一致";
         }
     }
-    
+
     /// <summary>集合フィルタ。複数のフィルタを組み合わせたフィルタです。</summary>
     public abstract class LogFilterCollection : LogFilter
     {
         public LogFilter[] subFilter = new LogFilter[0];
+
+        public LogFilterCollection() { }
+        public LogFilterCollection(LogFilter[] subFilter)
+        {
+            this.subFilter = subFilter;
+        }
 
         protected override void SaveImpl(XmlWriter writer)
         {
@@ -673,14 +698,22 @@ namespace Namalyzer
     /// <summary>ホスト名/IPに対するフィルタ</summary>
     public class LogFilterHost : LogFilterString
     {
+        public LogFilterHost() { }
+        public LogFilterHost(string matches, bool ignoreCase, MatchRule matchRule) : base(matches, ignoreCase, matchRule) { }
+        public LogFilterHost(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.strHost); }
         public override ELogFilter FilterType() { return ELogFilter.Host; }
         public override string ToString() { return ToString("ホスト名/IP"); }
     }
-    
+
     /// <summary>リモートログ名に対するフィルタ</summary>
     public class LogFilterRemoteLog : LogFilterString
     {
+        public LogFilterRemoteLog() { }
+        public LogFilterRemoteLog(string matches, bool ignoreCase, MatchRule matchRule) : base(matches, ignoreCase, matchRule) { }
+        public LogFilterRemoteLog(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.strRemoteLog); }
         public override ELogFilter FilterType() { return ELogFilter.RemoteLog; }
         public override string ToString() { return ToString("リモートログ名"); }
@@ -689,6 +722,10 @@ namespace Namalyzer
     /// <summary>ユーザー名に対するフィルタ</summary>
     public class LogFilterUser : LogFilterString
     {
+        public LogFilterUser() { }
+        public LogFilterUser(string matches, bool ignoreCase, MatchRule matchRule) : base(matches, ignoreCase, matchRule) { }
+        public LogFilterUser(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.strUser); }
         public override ELogFilter FilterType() { return ELogFilter.User; }
         public override string ToString() { return ToString("ユーザー名"); }
@@ -697,6 +734,9 @@ namespace Namalyzer
     /// <summary>日付に対するフィルタ</summary>
     public class LogFilterDate : LogFilterNumber
     {
+        public LogFilterDate() { }
+        public LogFilterDate(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.lDate); }
         public override ELogFilter FilterType() { return ELogFilter.Date; }
 
@@ -709,6 +749,9 @@ namespace Namalyzer
     /// <summary>月のみに対するフィルタ</summary>
     public class LogFilterMonth : LogFilterNumber
     {
+        public LogFilterMonth() { }
+        public LogFilterMonth(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(new DateTime(l.lDate).Month); }
         public override ELogFilter FilterType() { return ELogFilter.Month; }
 
@@ -721,6 +764,9 @@ namespace Namalyzer
     /// <summary>日のみに対するフィルタ</summary>
     public class LogFilterDay : LogFilterNumber
     {
+        public LogFilterDay() { }
+        public LogFilterDay(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(new DateTime(l.lDate).Day); }
         public override ELogFilter FilterType() { return ELogFilter.Day; }
 
@@ -742,6 +788,9 @@ namespace Namalyzer
     /// <summary>時間に対するフィルタ</summary>
     public class LogFilterHour : LogFilterNumber
     {
+        public LogFilterHour() { }
+        public LogFilterHour(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(new DateTime(l.lDate).Hour); }
         public override ELogFilter FilterType() { return ELogFilter.Hour; }
 
@@ -763,6 +812,10 @@ namespace Namalyzer
     /// <summary>リクエスト先に対するフィルタ</summary>
     public class LogFilterRequested : LogFilterString
     {
+        public LogFilterRequested() { }
+        public LogFilterRequested(string matches, bool ignoreCase, MatchRule matchRule) : base(matches, ignoreCase, matchRule) { }
+        public LogFilterRequested(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.strRequested); }
         public override ELogFilter FilterType() { return ELogFilter.Requested; }
         public override string ToString() { return ToString("リクエスト先"); }
@@ -780,6 +833,9 @@ namespace Namalyzer
     /// <summary>ステータスコードに対するフィルタ</summary>
     public class LogFilterStatusCode : LogFilterNumber
     {
+        public LogFilterStatusCode() { }
+        public LogFilterStatusCode(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.sStatus); }
         public override ELogFilter FilterType() { return ELogFilter.StatusCode; }
 
@@ -791,6 +847,9 @@ namespace Namalyzer
     /// <summary>転送量に対するフィルタ</summary>
     public class LogFilterSendSize : LogFilterNumber
     {
+        public LogFilterSendSize() { }
+        public LogFilterSendSize(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.iSendSize); }
         public override ELogFilter FilterType() { return ELogFilter.SendSize; }
 
@@ -813,6 +872,10 @@ namespace Namalyzer
     /// <summary>リファラに対するフィルタ</summary>
     public class LogFilterReferer : LogFilterString
     {
+        public LogFilterReferer() { }
+        public LogFilterReferer(string matches, bool ignoreCase, MatchRule matchRule) : base(matches, ignoreCase, matchRule) { }
+        public LogFilterReferer(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.strReferer); }
         public override ELogFilter FilterType() { return ELogFilter.Referer; }
         public override string ToString() { return ToString("リファラ"); }
@@ -821,6 +884,10 @@ namespace Namalyzer
     /// <summary>リファラのドメインに対するフィルタ</summary>
     public class LogFilterDomain : LogFilterString
     {
+        public LogFilterDomain() { }
+        public LogFilterDomain(string matches, bool ignoreCase, MatchRule matchRule) : base(matches, ignoreCase, matchRule) { }
+        public LogFilterDomain(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l)
         {
             if (l.strReferer.Contains("://"))
@@ -837,6 +904,10 @@ namespace Namalyzer
     /// <summary>検索に使われた語句に対するフィルタ</summary>
     public class LogFilterSearchPhrase : LogFilterString
     {
+        public LogFilterSearchPhrase() { }
+        public LogFilterSearchPhrase(string matches, bool ignoreCase, MatchRule matchRule) : base(matches, ignoreCase, matchRule) { }
+        public LogFilterSearchPhrase(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l)
         {
             string phrase = "";
@@ -853,6 +924,10 @@ namespace Namalyzer
     /// <summary>ユーザーエージェントに対するフィルタ</summary>
     public class LogFilterUserAgent : LogFilterString
     {
+        public LogFilterUserAgent() { }
+        public LogFilterUserAgent(string matches, bool ignoreCase, MatchRule matchRule) : base(matches, ignoreCase, matchRule) { }
+        public LogFilterUserAgent(long min, long max) : base(min, max) { }
+
         public override bool Match(Log l) { return Match(l.strUserAgent); }
         public override ELogFilter FilterType() { return ELogFilter.UserAgent; }
         public override string ToString() { return ToString("ユーザーエージェント"); }
@@ -865,6 +940,9 @@ namespace Namalyzer
     /// <summary>すべてのサブフィルタにマッチするログを通すフィルタ</summary>
     public class LogFilterAnd : LogFilterCollection
     {
+        public LogFilterAnd() { }
+        public LogFilterAnd(params LogFilter[] subFilter) : base(subFilter) { }
+
         public override bool Match(Log l)
         {
             foreach (LogFilter filter in subFilter)
@@ -877,13 +955,16 @@ namespace Namalyzer
         public override ELogFilter FilterType() { return ELogFilter.And; }
         public override string ToString()
         {
-            return subFilter.Length+"個のフィルタにすべてマッチ";
+            return subFilter.Length + "個のフィルタにすべてマッチ";
         }
     }
 
     /// <summary>少なくともひとつのサブフィルタにマッチするログを通すフィルタ</summary>
     public class LogFilterOr : LogFilterCollection
     {
+        public LogFilterOr() { }
+        public LogFilterOr(params LogFilter[] subFilter) : base(subFilter) { }
+
         public override bool Match(Log l)
         {
             foreach (LogFilter filter in subFilter)
@@ -896,13 +977,16 @@ namespace Namalyzer
         public override ELogFilter FilterType() { return ELogFilter.Or; }
         public override string ToString()
         {
-            return subFilter.Length+"個のフィルタのどれかにマッチ";
+            return subFilter.Length + "個のフィルタのどれかにマッチ";
         }
     }
 
     /// <summary>全てのサブフィルタにはマッチしないログを通すフィルタ</summary>
     public class LogFilterNand : LogFilterCollection
     {
+        public LogFilterNand() { }
+        public LogFilterNand(params LogFilter[] subFilter) : base(subFilter) { }
+
         public override bool Match(Log l)
         {
             foreach (LogFilter filter in subFilter)
@@ -915,13 +999,16 @@ namespace Namalyzer
         public override ELogFilter FilterType() { return ELogFilter.Nand; }
         public override string ToString()
         {
-            return subFilter.Length+"個のフィルタのすべてにはマッチしない";
+            return subFilter.Length + "個のフィルタのすべてにはマッチしない";
         }
     }
 
     /// <summary>どのサブフィルタにもマッチしないログを通すフィルタ</summary>
     public class LogFilterNor : LogFilterCollection
     {
+        public LogFilterNor() { }
+        public LogFilterNor(params LogFilter[] subFilter) : base(subFilter) { }
+
         public override bool Match(Log l)
         {
             foreach (LogFilter filter in subFilter)
@@ -934,7 +1021,7 @@ namespace Namalyzer
         public override ELogFilter FilterType() { return ELogFilter.Nor; }
         public override string ToString()
         {
-            return subFilter.Length+"個のフィルタのどれにもマッチしない";
+            return subFilter.Length + "個のフィルタのどれにもマッチしない";
         }
     }
 

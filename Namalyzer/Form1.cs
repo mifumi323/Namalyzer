@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Reflection;
 using MifuminLib;
+using MifuminLib.AccessAnalyzer;
 
 namespace Namalyzer
 {
