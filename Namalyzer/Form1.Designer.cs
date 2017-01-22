@@ -90,13 +90,13 @@
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.fileToolStripMenuItem.Text = "ファイル";
             // 
             // addFileToolStripMenuItem
             // 
             this.addFileToolStripMenuItem.Name = "addFileToolStripMenuItem";
-            this.addFileToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.addFileToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.addFileToolStripMenuItem.Text = "ファイルを追加";
             this.addFileToolStripMenuItem.Click += new System.EventHandler(this.addFileToolStripMenuItem_Click);
             // 
@@ -105,13 +105,13 @@
             this.reloadFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reloadAllToolStripMenuItem});
             this.reloadFileToolStripMenuItem.Name = "reloadFileToolStripMenuItem";
-            this.reloadFileToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.reloadFileToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.reloadFileToolStripMenuItem.Text = "読み込みなおす";
             // 
             // reloadAllToolStripMenuItem
             // 
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.reloadAllToolStripMenuItem.Text = "全て再読み込み";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
@@ -120,25 +120,25 @@
             this.deleteFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.closeAllToolStripMenuItem});
             this.deleteFileToolStripMenuItem.Name = "deleteFileToolStripMenuItem";
-            this.deleteFileToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.deleteFileToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.deleteFileToolStripMenuItem.Text = "ファイルを閉じる";
             // 
             // closeAllToolStripMenuItem
             // 
             this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
-            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.closeAllToolStripMenuItem.Text = "全て閉じる";
             this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(147, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.exitToolStripMenuItem.Text = "終了";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -149,27 +149,27 @@
             this.explorerToolStripMenuItem,
             this.statisticsToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.viewToolStripMenuItem.Text = "表示";
             // 
             // listToolStripMenuItem
             // 
             this.listToolStripMenuItem.Name = "listToolStripMenuItem";
-            this.listToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.listToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.listToolStripMenuItem.Text = "リスト表示";
             this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
             // 
             // explorerToolStripMenuItem
             // 
             this.explorerToolStripMenuItem.Name = "explorerToolStripMenuItem";
-            this.explorerToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.explorerToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.explorerToolStripMenuItem.Text = "エクスプローラ";
             this.explorerToolStripMenuItem.Click += new System.EventHandler(this.explorerToolStripMenuItem_Click);
             // 
             // statisticsToolStripMenuItem
             // 
             this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
-            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.statisticsToolStripMenuItem.Text = "統計";
             this.statisticsToolStripMenuItem.Click += new System.EventHandler(this.statisticsToolStripMenuItem_Click);
             // 
@@ -179,20 +179,20 @@
             this.readFilterToolStripMenuItem,
             this.analyzeFilterToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.filterToolStripMenuItem.Text = "フィルタ";
             // 
             // readFilterToolStripMenuItem
             // 
             this.readFilterToolStripMenuItem.Name = "readFilterToolStripMenuItem";
-            this.readFilterToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.readFilterToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.readFilterToolStripMenuItem.Text = "読み込みフィルタ";
             this.readFilterToolStripMenuItem.Click += new System.EventHandler(this.readFilterToolStripMenuItem_Click);
             // 
             // analyzeFilterToolStripMenuItem
             // 
             this.analyzeFilterToolStripMenuItem.Name = "analyzeFilterToolStripMenuItem";
-            this.analyzeFilterToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.analyzeFilterToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.analyzeFilterToolStripMenuItem.Text = "解析フィルタ";
             this.analyzeFilterToolStripMenuItem.Click += new System.EventHandler(this.analyzeFilterToolStripMenuItem_Click);
             // 
@@ -208,13 +208,13 @@
             this.toolStripMenuItem2,
             this.readFilterToolStripMenuItem1});
             this.readOptionToolStripMenuItem.Name = "readOptionToolStripMenuItem";
-            this.readOptionToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
+            this.readOptionToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
             this.readOptionToolStripMenuItem.Text = "読み込みオプション";
             // 
             // hostBufferToolStripMenuItem
             // 
             this.hostBufferToolStripMenuItem.Name = "hostBufferToolStripMenuItem";
-            this.hostBufferToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.hostBufferToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.hostBufferToolStripMenuItem.Tag = "hostBuffer";
             this.hostBufferToolStripMenuItem.Text = "ホスト名の長さ上限";
             this.hostBufferToolStripMenuItem.Click += new System.EventHandler(this.readOptionToolStripMenuItem_Click);
@@ -222,7 +222,7 @@
             // remoteLogBufferToolStripMenuItem
             // 
             this.remoteLogBufferToolStripMenuItem.Name = "remoteLogBufferToolStripMenuItem";
-            this.remoteLogBufferToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.remoteLogBufferToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.remoteLogBufferToolStripMenuItem.Tag = "remoteLogBuffer";
             this.remoteLogBufferToolStripMenuItem.Text = "リモートログ名の長さ上限";
             this.remoteLogBufferToolStripMenuItem.Click += new System.EventHandler(this.readOptionToolStripMenuItem_Click);
@@ -230,7 +230,7 @@
             // userBufferToolStripMenuItem
             // 
             this.userBufferToolStripMenuItem.Name = "userBufferToolStripMenuItem";
-            this.userBufferToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.userBufferToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.userBufferToolStripMenuItem.Tag = "userBuffer";
             this.userBufferToolStripMenuItem.Text = "ユーザー名の長さ上限";
             this.userBufferToolStripMenuItem.Click += new System.EventHandler(this.readOptionToolStripMenuItem_Click);
@@ -238,7 +238,7 @@
             // requestedBufferToolStripMenuItem
             // 
             this.requestedBufferToolStripMenuItem.Name = "requestedBufferToolStripMenuItem";
-            this.requestedBufferToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.requestedBufferToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.requestedBufferToolStripMenuItem.Tag = "requestedBuffer";
             this.requestedBufferToolStripMenuItem.Text = "リクエスト先の長さ上限";
             this.requestedBufferToolStripMenuItem.Click += new System.EventHandler(this.readOptionToolStripMenuItem_Click);
@@ -246,7 +246,7 @@
             // refererBufferToolStripMenuItem
             // 
             this.refererBufferToolStripMenuItem.Name = "refererBufferToolStripMenuItem";
-            this.refererBufferToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.refererBufferToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.refererBufferToolStripMenuItem.Tag = "refererBuffer";
             this.refererBufferToolStripMenuItem.Text = "リファラの長さ上限";
             this.refererBufferToolStripMenuItem.Click += new System.EventHandler(this.readOptionToolStripMenuItem_Click);
@@ -254,7 +254,7 @@
             // userAgentBufferToolStripMenuItem
             // 
             this.userAgentBufferToolStripMenuItem.Name = "userAgentBufferToolStripMenuItem";
-            this.userAgentBufferToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.userAgentBufferToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.userAgentBufferToolStripMenuItem.Tag = "userAgentBuffer";
             this.userAgentBufferToolStripMenuItem.Text = "ユーザーエージェントの長さ上限";
             this.userAgentBufferToolStripMenuItem.Click += new System.EventHandler(this.readOptionToolStripMenuItem_Click);
@@ -262,19 +262,19 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(214, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(212, 6);
             // 
             // readFilterToolStripMenuItem1
             // 
             this.readFilterToolStripMenuItem1.Name = "readFilterToolStripMenuItem1";
-            this.readFilterToolStripMenuItem1.Size = new System.Drawing.Size(217, 22);
+            this.readFilterToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
             this.readFilterToolStripMenuItem1.Text = "読み込みフィルタ";
             this.readFilterToolStripMenuItem1.Click += new System.EventHandler(this.readFilterToolStripMenuItem_Click);
             // 
             // abortToolStripMenuItem
             // 
             this.abortToolStripMenuItem.Name = "abortToolStripMenuItem";
-            this.abortToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.abortToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.abortToolStripMenuItem.Text = "中止";
             this.abortToolStripMenuItem.Visible = false;
             this.abortToolStripMenuItem.Click += new System.EventHandler(this.abortToolStripMenuItem_Click);
@@ -284,19 +284,18 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.helpToolStripMenuItem.Text = "ヘルプ";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.aboutToolStripMenuItem.Text = "バージョン情報";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "すべてのファイル|*";
             this.openFileDialog1.Multiselect = true;
             // 
@@ -313,7 +312,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(114, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // FormMain
@@ -329,10 +328,10 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "のんびりナマライザ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
