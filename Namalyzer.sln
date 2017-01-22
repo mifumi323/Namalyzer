@@ -9,6 +9,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "LogReader", "AccessAnalyzer
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RefererAnalyzer", "AccessAnalyzer\RefererAnalyzer\RefererAnalyzer.shproj", "{3E8646B8-48A8-4B8B-BEC4-07EC6F250B00}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12894D19-EAD4-46D0-814A-B29C1D8FBC1C}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		AccessAnalyzer\LogReader\LogReader.projitems*{253b00f7-8866-4e8e-aef2-912bac236936}*SharedItemsImports = 13
