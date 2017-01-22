@@ -2,6 +2,6 @@
 bin/
 obj/
 packages/
+publish/
 *.suo
 *.lnk
-release.bat

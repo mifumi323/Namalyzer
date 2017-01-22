@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Namalyzer")]
-[assembly: AssemblyCopyright("Copyright (C) Mifumi  2006-2010")]
+[assembly: AssemblyCopyright("Copyright (C) Mifumi  2006-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.10.0.0")]
+[assembly: AssemblyVersion("1.11.0.0")]
 //[assembly: AssemblyFileVersion("1.0.0.0")]
