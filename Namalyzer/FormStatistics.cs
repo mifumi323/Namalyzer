@@ -536,15 +536,23 @@ namespace Namalyzer
         {
             BeginUpdate();
 
-            Dictionary<string, int> d = new Dictionary<string, int>();
+            var d = new Dictionary<string, int>();
 
-            string phrase = "";
+            var refererAnalyzer = new RefererAnalyzer();
             foreach (Log l in logs)
             {
-                if (!l.strReferer.StartsWith("http://")) continue;
-                if (RefererAnalyzer.TryGetSearchPhrase(l.strReferer, ref phrase))
+                if (l.strReferer == null || l.strReferer.Length < 8) continue;
+                try
                 {
-                    IncrementDictionary(d, phrase);
+                    var phrase = refererAnalyzer.GetSearchQuery(l.strReferer);
+                    if (!string.IsNullOrWhiteSpace(phrase))
+                    {
+                        IncrementDictionary(d, phrase.Trim());
+                    }
+                }
+                catch (Exception)
+                {
+                    // エラーは無視しちゃおうねー
                 }
             }
             UpdateGridView(d);
