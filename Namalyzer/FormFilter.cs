@@ -409,12 +409,7 @@ namespace Namalyzer
 
         private void exportToClipBoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StringBuilder output = new StringBuilder(1024);
-            using (XmlWriter writer = XmlWriter.Create(output))
-            {
-                SelectedFilter.Save(writer);
-            }
-            SafeClipboard.SetText(output);
+            SafeClipboard.SetText(SelectedFilter.ToXmlString());
         }
 
         private void importFromClipBoardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -424,10 +419,7 @@ namespace Namalyzer
                 LogFilter filter = null;
                 try
                 {
-                    using (XmlReader reader = XmlReader.Create(new StringReader(Clipboard.GetText())))
-                    {
-                        filter = LogFilter.Load(reader);
-                    }
+                    filter = LogFilter.FromXmlString(Clipboard.GetText());
                 }
                 catch (Exception)
                 {
