@@ -738,7 +738,16 @@ namespace Namalyzer
 
         private void btnRemoveSub_Click(object sender, EventArgs e)
         {
-            ShowError("未実装です＞＜");
+            if (lstCollection.SelectedIndex < 0) return;
+            var filter = (LogFilter)trvFilter.SelectedNode.Nodes[lstCollection.SelectedIndex].Tag;
+            var parentFilter = (LogFilterCollection)SelectedFilter;
+
+            if (RemoveFilter(filter, parentFilter))
+            {
+                HideForm();
+                EditForm(parentFilter);
+                SelectedFilter = parentFilter;
+            }
         }
 
         private void addChildToolStripMenuItem_Click(object sender, EventArgs e)
