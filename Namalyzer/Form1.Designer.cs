@@ -90,7 +90,7 @@
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.fileToolStripMenuItem.Text = "ファイル";
             // 
             // addFileToolStripMenuItem
@@ -179,20 +179,20 @@
             this.readFilterToolStripMenuItem,
             this.analyzeFilterToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.filterToolStripMenuItem.Text = "フィルタ";
             // 
             // readFilterToolStripMenuItem
             // 
             this.readFilterToolStripMenuItem.Name = "readFilterToolStripMenuItem";
-            this.readFilterToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.readFilterToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.readFilterToolStripMenuItem.Text = "読み込みフィルタ";
             this.readFilterToolStripMenuItem.Click += new System.EventHandler(this.readFilterToolStripMenuItem_Click);
             // 
             // analyzeFilterToolStripMenuItem
             // 
             this.analyzeFilterToolStripMenuItem.Name = "analyzeFilterToolStripMenuItem";
-            this.analyzeFilterToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.analyzeFilterToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.analyzeFilterToolStripMenuItem.Text = "解析フィルタ";
             this.analyzeFilterToolStripMenuItem.Click += new System.EventHandler(this.analyzeFilterToolStripMenuItem_Click);
             // 
@@ -208,7 +208,7 @@
             this.toolStripMenuItem2,
             this.readFilterToolStripMenuItem1});
             this.readOptionToolStripMenuItem.Name = "readOptionToolStripMenuItem";
-            this.readOptionToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.readOptionToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
             this.readOptionToolStripMenuItem.Text = "読み込みオプション";
             // 
             // hostBufferToolStripMenuItem
@@ -312,8 +312,8 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(309, 17);
+            this.toolStripStatusLabel1.Text = "ログファイルをドラッグ＆ドロップするか、メニューから開いてください。";
             // 
             // FormMain
             // 
