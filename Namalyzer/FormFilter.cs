@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Xml;
 using MifuminLib;
 using MifuminLib.AccessAnalyzer;
+using System.Linq;
 
 namespace Namalyzer
 {
@@ -270,30 +271,32 @@ namespace Namalyzer
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var parentFilter = (LogFilterCollection)trvFilter.SelectedNode.Parent.Tag;
+            var parentNode = trvFilter.SelectedNode.Parent;
+            if (RemoveFilter(SelectedFilter, parentFilter))
+            {
+                trvFilter.SelectedNode = parentNode;
+                SelectedFilter = parentFilter;
+            }
+        }
+
+        private bool RemoveFilter(LogFilter filter, LogFilterCollection parentFilter)
+        {
             if (MessageBox.Show(this,
                 "フィルタ\n　" +
-                SelectedFilter.ToString() +
+                filter.ToString() +
                 "\nを削除してもよろしいですか？",
                 "削除の確認", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2)
-                == DialogResult.Yes)
+                != DialogResult.Yes)
             {
-                LogFilter del = SelectedFilter;
-                LogFilterCollection parent = (LogFilterCollection)trvFilter.SelectedNode.Parent.Tag;
-                LogFilter[] old = parent.subFilter;
-                parent.subFilter = new LogFilter[old.Length - 1];
-                int j = 0;
-                for (int i = 0; i < old.Length; i++)
-                {
-                    if (old[i] != del)
-                    {
-                        parent.subFilter[j++] = old[i];
-                    }
-                }
-                trvFilter.SelectedNode = trvFilter.SelectedNode.Parent;
-                SelectedFilter = parent;
+                return false;
             }
+
+            parentFilter.subFilter = parentFilter.subFilter.Where(f => f != filter).ToArray();
+
+            return true;
         }
 
         private void contextMenuStrip1_Opened(object sender, EventArgs e)
