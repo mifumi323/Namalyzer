@@ -23,7 +23,7 @@ namespace Namalyzer
 
             public void Update(ListViewGroupCollection groups)
             {
-                item.ImageIndex = ( fileName.EndsWith("/")? 0 : 3) + (statusCode / 100 == 2 ? 0 : (statusCode / 100 < 4 ? 1 : 2));
+                item.ImageIndex = (fileName.EndsWith("/") ? 0 : 3) + (statusCode / 100 == 2 ? 0 : (statusCode / 100 < 4 ? 1 : 2));
                 item.SubItems[0].Text = fileName;
                 item.SubItems[1].Text = requestNumber.ToString();
                 item.SubItems[2].Text = statusCode.ToString() + "(" + (100 * statusRate / requestNumber) + "%)";
@@ -44,7 +44,7 @@ namespace Namalyzer
 
             private int requestNumber;
             public int RequestNumber { get { return requestNumber; } set { requestNumber = value; } }
-	
+
         }
         ExplorerItem[] items = new ExplorerItem[0];
         Comparison<ExplorerItem> comparison = FileNameComparison;
@@ -55,15 +55,15 @@ namespace Namalyzer
         }
         static int RequestNumberComparison(ExplorerItem x, ExplorerItem y)
         {
-                int diff = y.RequestNumber - x.RequestNumber;
-                if (diff != 0) return diff;
-                return String.Compare(x.FileName, y.FileName);
+            int diff = y.RequestNumber - x.RequestNumber;
+            if (diff != 0) return diff;
+            return String.Compare(x.FileName, y.FileName);
         }
         static int StatusCodeComparison(ExplorerItem x, ExplorerItem y)
         {
-                int diff = x.StatusCode - y.StatusCode;
-                if (diff != 0) return diff;
-                return String.Compare(x.FileName, y.FileName);
+            int diff = x.StatusCode - y.StatusCode;
+            if (diff != 0) return diff;
+            return String.Compare(x.FileName, y.FileName);
         }
 
         public FormExplorer()
@@ -153,8 +153,8 @@ namespace Namalyzer
                         if (i2 > 0) fileName = fileName.Substring(0, i2);
                     }
                     if (!dic.TryGetValue(fileName, out status)) dic.Add(fileName, status = new Dictionary<short, int>());
-                    if (status.ContainsKey(log.sStatus)) status[log.sStatus]++;
-                    else status.Add(log.sStatus, 1);
+                    if (status.ContainsKey(log.Status)) status[log.Status]++;
+                    else status.Add(log.Status, 1);
                 }
             }
             items = new ExplorerItem[dic.Count];
