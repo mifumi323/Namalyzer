@@ -153,7 +153,7 @@ namespace Namalyzer
 
             foreach (Log l in logs)
             {
-                lSendSum += l.iSendSize;
+                lSendSum += l.SendSize;
             }
 
             lstStatistics.Items[(int)ListLine.Request] = "リクエスト数：" + logs.Length.ToString("N0");
@@ -168,7 +168,7 @@ namespace Namalyzer
 
             Dictionary<string, int> d = new Dictionary<string, int>();
 
-            foreach (Log l in logs) IncrementDictionary(d, l.strHost);
+            foreach (Log l in logs) IncrementDictionary(d, l.Host);
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -180,7 +180,7 @@ namespace Namalyzer
 
             Dictionary<string, int> d = new Dictionary<string, int>();
 
-            foreach (Log l in logs) IncrementDictionary(d, l.strRemoteLog);
+            foreach (Log l in logs) IncrementDictionary(d, l.RemoteLog);
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -192,7 +192,7 @@ namespace Namalyzer
 
             Dictionary<string, int> d = new Dictionary<string, int>();
 
-            foreach (Log l in logs) IncrementDictionary(d, l.strUser);
+            foreach (Log l in logs) IncrementDictionary(d, l.User);
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -403,7 +403,7 @@ namespace Namalyzer
             Dictionary<Log.EMethod, int> d = new Dictionary<Log.EMethod, int>();
 
             int val;
-            foreach (Log l in logs) d[l.eMethod] = d.TryGetValue(l.eMethod, out val) ? val + 1 : 1;
+            foreach (Log l in logs) d[l.Method] = d.TryGetValue(l.Method, out val) ? val + 1 : 1;
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -415,7 +415,7 @@ namespace Namalyzer
 
             Dictionary<string, int> d = new Dictionary<string, int>();
 
-            foreach (Log l in logs) IncrementDictionary(d, l.strRequested);
+            foreach (Log l in logs) IncrementDictionary(d, l.Requested);
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -440,7 +440,7 @@ namespace Namalyzer
             Dictionary<short, int> d = new Dictionary<short, int>();
 
             int val;
-            foreach (Log l in logs) d[l.sStatus] = d.TryGetValue(l.sStatus, out val) ? val + 1 : 1;
+            foreach (Log l in logs) d[l.Status] = d.TryGetValue(l.Status, out val) ? val + 1 : 1;
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -501,7 +501,7 @@ namespace Namalyzer
 
             Dictionary<string, int> d = new Dictionary<string, int>();
 
-            foreach (Log l in logs) IncrementDictionary(d, l.strReferer);
+            foreach (Log l in logs) IncrementDictionary(d, l.Referer);
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -516,9 +516,9 @@ namespace Namalyzer
             foreach (Log l in logs)
             {
                 string domain;
-                if (l.strReferer.Contains("://"))
+                if (l.Referer.Contains("://"))
                 {
-                    try { domain = new Uri(l.strReferer).Host; }
+                    try { domain = new Uri(l.Referer).Host; }
                     catch (Exception) { continue; }
                 }
                 else
@@ -541,10 +541,10 @@ namespace Namalyzer
             var refererAnalyzer = new RefererAnalyzer();
             foreach (Log l in logs)
             {
-                if (l.strReferer == null || l.strReferer.Length < 8) continue;
+                if (l.Referer == null || l.Referer.Length < 8) continue;
                 try
                 {
-                    var phrase = refererAnalyzer.GetSearchQuery(l.strReferer);
+                    var phrase = refererAnalyzer.GetSearchQuery(l.Referer);
                     if (!string.IsNullOrWhiteSpace(phrase))
                     {
                         IncrementDictionary(d, phrase.Trim());
@@ -566,7 +566,7 @@ namespace Namalyzer
 
             Dictionary<string, int> d = new Dictionary<string, int>();
 
-            foreach (Log l in logs) IncrementDictionary(d, l.strUserAgent);
+            foreach (Log l in logs) IncrementDictionary(d, l.UserAgent);
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
