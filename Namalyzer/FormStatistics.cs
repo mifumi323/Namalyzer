@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using MifuminLib;
 using MifuminLib.AccessAnalyzer;
+using MifuminLib.WellKnownUriParser;
 
 namespace Namalyzer
 {
@@ -59,8 +60,15 @@ namespace Namalyzer
 
         public void UpdateFunc(Log[] o)
         {
-            logs = Filter.Extract(original = o);
-            CallUpdateFunc(logs);
+            if (InvokeRequired)
+            {
+                Invoke(new UpdateFunc(UpdateFunc), new object []{ o });
+            }
+            else
+            {
+                logs = Filter.Extract(original = o);
+                CallUpdateFunc(logs);
+            }
         }
 
         private void UpdateGridView<T>(KeyValuePair<T, int>[] c)
@@ -538,13 +546,13 @@ namespace Namalyzer
 
             var d = new Dictionary<string, int>();
 
-            var refererAnalyzer = new RefererAnalyzer();
+            var refererAnalyzer = new SearchQueryParser();
             foreach (Log l in logs)
             {
                 if (l.Referer == null || l.Referer.Length < 8) continue;
                 try
                 {
-                    var phrase = refererAnalyzer.GetSearchQuery(l.Referer);
+                    var phrase = refererAnalyzer.FromString(l.Referer);
                     if (!string.IsNullOrWhiteSpace(phrase))
                     {
                         IncrementDictionary(d, phrase.Trim());

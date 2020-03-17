@@ -19,7 +19,7 @@ namespace Namalyzer
                 Text = "リスト表示 - " + ((Log[])(dgvLog.DataSource = (filter = value).Extract(original))).Length.ToString() + "件";
             }
         }
-	
+
 
         public FormList()
         {
@@ -28,7 +28,14 @@ namespace Namalyzer
 
         public void UpdateFunc(Log[] logs)
         {
-            Text = "リスト表示 - " + ((Log[])(dgvLog.DataSource = filter.Extract(original = logs))).Length.ToString() + "件";
+            if (InvokeRequired)
+            {
+                Invoke(new UpdateFunc(UpdateFunc), new object []{ logs });
+            }
+            else
+            {
+                Text = "リスト表示 - " + ((Log[])(dgvLog.DataSource = filter.Extract(original = logs))).Length.ToString() + "件";
+            }
         }
 
         private void copyTextToolStripMenuItem_Click(object sender, EventArgs e)

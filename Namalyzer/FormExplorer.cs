@@ -123,8 +123,15 @@ namespace Namalyzer
 
         public void UpdateFunc(Log[] logs)
         {
-            this.logs = logs;
-            Explore(directory);
+            if (InvokeRequired)
+            {
+                Invoke(new UpdateFunc(UpdateFunc), new object []{ logs });
+            }
+            else
+            {
+                this.logs = logs;
+                Explore(directory);
+            }
         }
 
         public void Explore(string directory)
