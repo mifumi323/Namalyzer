@@ -19,7 +19,7 @@ namespace Namalyzer
         public FormMain()
         {
             InitializeComponent();
-            logData = new AccessLog(this);
+            logData = new AccessLog();
         }
 
         private void deleteFileToolStripMenuItem_Click(object sender, EventArgs e)

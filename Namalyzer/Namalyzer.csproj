@@ -55,6 +55,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MifuminLib.AccessAnalyzer, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MifuminLib.AccessAnalyzer.0.1.0-alpha1\lib\netstandard2.0\MifuminLib.AccessAnalyzer.dll</HintPath>
+    </Reference>
     <Reference Include="MifuminLib.WellKnownUriParser, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MifuminLib.WellKnownUriParser.0.1.0-alpha3\lib\netstandard2.0\MifuminLib.WellKnownUriParser.dll</HintPath>
     </Reference>
