@@ -11,7 +11,7 @@
     <RootNamespace>Namalyzer</RootNamespace>
     <AssemblyName>Namalyzer</AssemblyName>
     <ApplicationIcon>eelpitcher.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -55,6 +55,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MifuminLib.WellKnownUriParser, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MifuminLib.WellKnownUriParser.0.1.0-alpha3\lib\netstandard2.0\MifuminLib.WellKnownUriParser.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -138,6 +141,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\FormExplorer.ExplorerItem.datasource" />
     <None Include="Properties\DataSources\Log.datasource" />
     <None Include="Properties\Settings.settings">
@@ -182,8 +186,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <Import Project="..\AccessAnalyzer\LogReader\LogReader.projitems" Label="Shared" />
-  <Import Project="..\AccessAnalyzer\RefererAnalyzer\RefererAnalyzer.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\NamalyzerLib\NamalyzerLib.csproj">
+      <Project>{6cb4e11e-2cd9-4d7a-beb8-73281dff0187}</Project>
+      <Name>NamalyzerLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
