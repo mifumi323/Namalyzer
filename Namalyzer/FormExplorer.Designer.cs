@@ -75,8 +75,8 @@
             this.lsvExplorer.TabIndex = 0;
             this.lsvExplorer.UseCompatibleStateImageBehavior = false;
             this.lsvExplorer.View = System.Windows.Forms.View.Details;
-            this.lsvExplorer.DoubleClick += new System.EventHandler(this.lsvExplorer_DoubleClick);
-            this.lsvExplorer.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lsvExplorer_ColumnClick);
+            this.lsvExplorer.DoubleClick += new System.EventHandler(this.LsvExplorer_DoubleClick);
+            this.lsvExplorer.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.LsvExplorer_ColumnClick);
             // 
             // columnHeader1
             // 
@@ -147,7 +147,7 @@
             this.tsbUpDirectory.Size = new System.Drawing.Size(23, 22);
             this.tsbUpDirectory.Text = "toolStripButton6";
             this.tsbUpDirectory.ToolTipText = "上へ";
-            this.tsbUpDirectory.Click += new System.EventHandler(this.tsbUpDirectory_Click);
+            this.tsbUpDirectory.Click += new System.EventHandler(this.TsbUpDirectory_Click);
             // 
             // toolStripSeparator1
             // 
@@ -163,7 +163,7 @@
             this.tsbViewLargeIcon.Size = new System.Drawing.Size(23, 22);
             this.tsbViewLargeIcon.Text = "toolStripButton1";
             this.tsbViewLargeIcon.ToolTipText = "大きいアイコン";
-            this.tsbViewLargeIcon.Click += new System.EventHandler(this.tsbViewLargeIcon_Click);
+            this.tsbViewLargeIcon.Click += new System.EventHandler(this.TsbViewLargeIcon_Click);
             // 
             // tsbViewDetails
             // 
@@ -174,7 +174,7 @@
             this.tsbViewDetails.Size = new System.Drawing.Size(23, 22);
             this.tsbViewDetails.Text = "toolStripButton2";
             this.tsbViewDetails.ToolTipText = "詳細";
-            this.tsbViewDetails.Click += new System.EventHandler(this.tsbViewDetails_Click);
+            this.tsbViewDetails.Click += new System.EventHandler(this.TsbViewDetails_Click);
             // 
             // tsbViewSmallIcon
             // 
@@ -185,7 +185,7 @@
             this.tsbViewSmallIcon.Size = new System.Drawing.Size(23, 22);
             this.tsbViewSmallIcon.Text = "toolStripButton3";
             this.tsbViewSmallIcon.ToolTipText = "小さいアイコン";
-            this.tsbViewSmallIcon.Click += new System.EventHandler(this.tsbViewSmallIcon_Click);
+            this.tsbViewSmallIcon.Click += new System.EventHandler(this.TsbViewSmallIcon_Click);
             // 
             // tsbViewList
             // 
@@ -196,7 +196,7 @@
             this.tsbViewList.Size = new System.Drawing.Size(23, 22);
             this.tsbViewList.Text = "toolStripButton4";
             this.tsbViewList.ToolTipText = "一覧";
-            this.tsbViewList.Click += new System.EventHandler(this.tsbViewList_Click);
+            this.tsbViewList.Click += new System.EventHandler(this.TsbViewList_Click);
             // 
             // tsbViewTile
             // 
@@ -207,7 +207,7 @@
             this.tsbViewTile.Size = new System.Drawing.Size(23, 22);
             this.tsbViewTile.Text = "toolStripButton5";
             this.tsbViewTile.ToolTipText = "並べて表示";
-            this.tsbViewTile.Click += new System.EventHandler(this.tsbViewTile_Click);
+            this.tsbViewTile.Click += new System.EventHandler(this.TsbViewTile_Click);
             // 
             // FormExplorer
             // 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
@@ -9,8 +9,7 @@ namespace Namalyzer
 {
     public partial class FormMain : Form
     {
-        AccessLog logData;
-        public AccessLog LogData { get { return logData; } }
+        public AccessLog LogData { get; }
 
         DateTime start;
         string[] readList;
@@ -19,16 +18,16 @@ namespace Namalyzer
         public FormMain()
         {
             InitializeComponent();
-            logData = new AccessLog();
+            LogData = new AccessLog();
         }
 
-        private void deleteFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogData.Release((LogFile)((ToolStripMenuItem)sender).Tag);
             UpdateFileMenu();
         }
 
-        private void addFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK) LogRead(openFileDialog1.FileNames);
         }
@@ -148,22 +147,24 @@ namespace Namalyzer
                 foreach (LogFile file in LogData.GetFile())
                 {
                     ToolStripMenuItem tsm = new ToolStripMenuItem(file.FileName);
-                    tsm.Click += new EventHandler(deleteFileToolStripMenuItem_Click);
+                    tsm.Click += new EventHandler(DeleteFileToolStripMenuItem_Click);
                     tsm.Tag = file;
                     deleteFileToolStripMenuItem.DropDownItems.Add(tsm);
                     tsm = new ToolStripMenuItem(file.FileName);
-                    tsm.Click += new EventHandler(reloadFileToolStripMenuItem_Click);
+                    tsm.Click += new EventHandler(ReloadFileToolStripMenuItem_Click);
                     tsm.Tag = file;
                     reloadFileToolStripMenuItem.DropDownItems.Add(tsm);
                 }
             }
         }
 
-        private void readFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReadFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormFilter f = new FormFilter();
-            f.Filter = LogData.ReadFilter;
-            f.Text = "読み込みフィルタ編集";
+            FormFilter f = new FormFilter
+            {
+                Filter = LogData.ReadFilter,
+                Text = "読み込みフィルタ編集"
+            };
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 LogData.ReadFilter = f.Filter;
@@ -175,42 +176,48 @@ namespace Namalyzer
             }
         }
 
-        private void analyzeFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AnalyzeFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormFilter f = new FormFilter();
-            f.Filter = LogData.AnalyzeFilter;
-            f.Text = "解析フィルタ編集";
+            FormFilter f = new FormFilter
+            {
+                Filter = LogData.AnalyzeFilter,
+                Text = "解析フィルタ編集"
+            };
             if (f.ShowDialog(this) == DialogResult.OK) LogData.AnalyzeFilter = f.Filter;
         }
 
-        private void listToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormList formList = new FormList();
-            formList.MdiParent = this;
+            FormList formList = new FormList
+            {
+                MdiParent = this
+            };
             formList.Show();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExplorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormExplorer formExplorer = new FormExplorer();
-            formExplorer.LogData = LogData;
-            formExplorer.MdiParent = this;
+            FormExplorer formExplorer = new FormExplorer
+            {
+                LogData = LogData,
+                MdiParent = this
+            };
             formExplorer.Explore("/");
             formExplorer.Show();
         }
 
-        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogData.Clear();
             UpdateFileMenu();
         }
 
-        private void reloadFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReloadFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BeginRead(1);
 
@@ -219,24 +226,26 @@ namespace Namalyzer
             backgroundWorker1.RunWorkerAsync((LogFile)((ToolStripMenuItem)sender).Tag);
         }
 
-        private void reloadAllToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReloadAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AllReload();
         }
 
-        private void statisticsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StatisticsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormStatistics formStatistics = new FormStatistics();
-            formStatistics.MdiParent = this;
+            FormStatistics formStatistics = new FormStatistics
+            {
+                MdiParent = this
+            };
             formStatistics.Show();
         }
 
-        private void abortToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AbortToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogData.CancelRead();
         }
 
-        private void readOptionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReadOptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             FieldInfo info = typeof(LogReadOption).GetField((string)item.Tag);
@@ -253,7 +262,7 @@ namespace Namalyzer
             }
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Application.ProductName + "\n" + Application.ProductVersion);
         }

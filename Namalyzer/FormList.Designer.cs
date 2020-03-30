@@ -186,14 +186,14 @@
             this.copyTextToolStripMenuItem.Name = "copyTextToolStripMenuItem";
             this.copyTextToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.copyTextToolStripMenuItem.Text = "Copy Text";
-            this.copyTextToolStripMenuItem.Click += new System.EventHandler(this.copyTextToolStripMenuItem_Click);
+            this.copyTextToolStripMenuItem.Click += new System.EventHandler(this.CopyTextToolStripMenuItem_Click);
             // 
             // detailFilterToolStripMenuItem
             // 
             this.detailFilterToolStripMenuItem.Name = "detailFilterToolStripMenuItem";
             this.detailFilterToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.detailFilterToolStripMenuItem.Text = "Detail-Filter";
-            this.detailFilterToolStripMenuItem.Click += new System.EventHandler(this.detailFilterToolStripMenuItem_Click);
+            this.detailFilterToolStripMenuItem.Click += new System.EventHandler(this.DetailFilterToolStripMenuItem_Click);
             // 
             // logBindingSource
             // 

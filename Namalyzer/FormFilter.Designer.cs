@@ -131,9 +131,9 @@
             this.trvFilter.Name = "trvFilter";
             this.trvFilter.Size = new System.Drawing.Size(185, 278);
             this.trvFilter.TabIndex = 0;
-            this.trvFilter.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.trvFilter_NodeMouseHover);
-            this.trvFilter.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvFilter_AfterSelect);
-            this.trvFilter.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvFilter_BeforeSelect);
+            this.trvFilter.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.TrvFilter_NodeMouseHover);
+            this.trvFilter.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TrvFilter_AfterSelect);
+            this.trvFilter.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.TrvFilter_BeforeSelect);
             // 
             // btnAction
             // 
@@ -144,7 +144,7 @@
             this.btnAction.TabIndex = 2;
             this.btnAction.Text = "操作";
             this.btnAction.UseVisualStyleBackColor = true;
-            this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
+            this.btnAction.Click += new System.EventHandler(this.BtnAction_Click);
             // 
             // cmbFilter
             // 
@@ -156,7 +156,7 @@
             this.cmbFilter.Name = "cmbFilter";
             this.cmbFilter.Size = new System.Drawing.Size(248, 20);
             this.cmbFilter.TabIndex = 1;
-            this.cmbFilter.SelectedIndexChanged += new System.EventHandler(this.cmbFilter_SelectedIndexChanged);
+            this.cmbFilter.SelectedIndexChanged += new System.EventHandler(this.CmbFilter_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -182,7 +182,7 @@
             this.clbEnum.Name = "clbEnum";
             this.clbEnum.Size = new System.Drawing.Size(128, 60);
             this.clbEnum.TabIndex = 5;
-            this.clbEnum.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbEnum_ItemCheck);
+            this.clbEnum.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ClbEnum_ItemCheck);
             // 
             // tlpDate
             // 
@@ -215,7 +215,7 @@
             this.chkDateStart.TabIndex = 0;
             this.chkDateStart.Text = "開始";
             this.chkDateStart.UseVisualStyleBackColor = true;
-            this.chkDateStart.CheckedChanged += new System.EventHandler(this.chkDateStart_CheckedChanged);
+            this.chkDateStart.CheckedChanged += new System.EventHandler(this.ChkDateStart_CheckedChanged);
             // 
             // chkDateEnd
             // 
@@ -226,7 +226,7 @@
             this.chkDateEnd.TabIndex = 2;
             this.chkDateEnd.Text = "終了";
             this.chkDateEnd.UseVisualStyleBackColor = true;
-            this.chkDateEnd.CheckedChanged += new System.EventHandler(this.chkDateEnd_CheckedChanged);
+            this.chkDateEnd.CheckedChanged += new System.EventHandler(this.ChkDateEnd_CheckedChanged);
             // 
             // lblDate
             // 
@@ -248,7 +248,7 @@
             this.dtpDateStart.Name = "dtpDateStart";
             this.dtpDateStart.Size = new System.Drawing.Size(137, 19);
             this.dtpDateStart.TabIndex = 5;
-            this.dtpDateStart.ValueChanged += new System.EventHandler(this.dtpDateStart_ValueChanged);
+            this.dtpDateStart.ValueChanged += new System.EventHandler(this.DtpDateStart_ValueChanged);
             // 
             // dtpDateEnd
             // 
@@ -259,7 +259,7 @@
             this.dtpDateEnd.Name = "dtpDateEnd";
             this.dtpDateEnd.Size = new System.Drawing.Size(137, 19);
             this.dtpDateEnd.TabIndex = 6;
-            this.dtpDateEnd.ValueChanged += new System.EventHandler(this.dtpDateEnd_ValueChanged);
+            this.dtpDateEnd.ValueChanged += new System.EventHandler(this.DtpDateEnd_ValueChanged);
             // 
             // tlpNumber
             // 
@@ -292,7 +292,7 @@
             this.chkNumberMax.TabIndex = 0;
             this.chkNumberMax.Text = "上限";
             this.chkNumberMax.UseVisualStyleBackColor = true;
-            this.chkNumberMax.CheckedChanged += new System.EventHandler(this.chkNumberMax_CheckedChanged);
+            this.chkNumberMax.CheckedChanged += new System.EventHandler(this.ChkNumberMax_CheckedChanged);
             // 
             // numNumberMax
             // 
@@ -301,7 +301,7 @@
             this.numNumberMax.Name = "numNumberMax";
             this.numNumberMax.Size = new System.Drawing.Size(60, 19);
             this.numNumberMax.TabIndex = 1;
-            this.numNumberMax.ValueChanged += new System.EventHandler(this.numNumberMax_ValueChanged);
+            this.numNumberMax.ValueChanged += new System.EventHandler(this.NumNumberMax_ValueChanged);
             // 
             // chkNumberMin
             // 
@@ -312,7 +312,7 @@
             this.chkNumberMin.TabIndex = 2;
             this.chkNumberMin.Text = "下限";
             this.chkNumberMin.UseVisualStyleBackColor = true;
-            this.chkNumberMin.CheckedChanged += new System.EventHandler(this.chkNumberMin_CheckedChanged);
+            this.chkNumberMin.CheckedChanged += new System.EventHandler(this.ChkNumberMin_CheckedChanged);
             // 
             // numNumberMin
             // 
@@ -321,7 +321,7 @@
             this.numNumberMin.Name = "numNumberMin";
             this.numNumberMin.Size = new System.Drawing.Size(60, 19);
             this.numNumberMin.TabIndex = 3;
-            this.numNumberMin.ValueChanged += new System.EventHandler(this.numNumberMin_ValueChanged);
+            this.numNumberMin.ValueChanged += new System.EventHandler(this.NumNumberMin_ValueChanged);
             // 
             // lblNumber
             // 
@@ -363,7 +363,7 @@
             this.lstCollection.Name = "lstCollection";
             this.lstCollection.Size = new System.Drawing.Size(298, 16);
             this.lstCollection.TabIndex = 0;
-            this.lstCollection.DoubleClick += new System.EventHandler(this.lstCollection_DoubleClick);
+            this.lstCollection.DoubleClick += new System.EventHandler(this.LstCollection_DoubleClick);
             // 
             // btnEditSub
             // 
@@ -374,7 +374,7 @@
             this.btnEditSub.TabIndex = 1;
             this.btnEditSub.Text = "編集";
             this.btnEditSub.UseVisualStyleBackColor = true;
-            this.btnEditSub.Click += new System.EventHandler(this.btnEditSub_Click);
+            this.btnEditSub.Click += new System.EventHandler(this.BtnEditSub_Click);
             // 
             // btnAddSub
             // 
@@ -385,7 +385,7 @@
             this.btnAddSub.TabIndex = 2;
             this.btnAddSub.Text = "追加";
             this.btnAddSub.UseVisualStyleBackColor = true;
-            this.btnAddSub.Click += new System.EventHandler(this.btnAddSub_Click);
+            this.btnAddSub.Click += new System.EventHandler(this.BtnAddSub_Click);
             // 
             // btnRemoveSub
             // 
@@ -396,7 +396,7 @@
             this.btnRemoveSub.TabIndex = 3;
             this.btnRemoveSub.Text = "削除";
             this.btnRemoveSub.UseVisualStyleBackColor = true;
-            this.btnRemoveSub.Click += new System.EventHandler(this.btnRemoveSub_Click);
+            this.btnRemoveSub.Click += new System.EventHandler(this.BtnRemoveSub_Click);
             // 
             // pnlString
             // 
@@ -441,7 +441,7 @@
             this.chkStringMin.TabIndex = 0;
             this.chkStringMin.Text = "下限";
             this.chkStringMin.UseVisualStyleBackColor = true;
-            this.chkStringMin.CheckedChanged += new System.EventHandler(this.chkStringMin_CheckedChanged);
+            this.chkStringMin.CheckedChanged += new System.EventHandler(this.ChkStringMin_CheckedChanged);
             // 
             // numStringMin
             // 
@@ -455,7 +455,7 @@
             this.numStringMin.Name = "numStringMin";
             this.numStringMin.Size = new System.Drawing.Size(30, 19);
             this.numStringMin.TabIndex = 1;
-            this.numStringMin.ValueChanged += new System.EventHandler(this.numStringMin_ValueChanged);
+            this.numStringMin.ValueChanged += new System.EventHandler(this.NumStringMin_ValueChanged);
             // 
             // chkStringMax
             // 
@@ -467,7 +467,7 @@
             this.chkStringMax.TabIndex = 0;
             this.chkStringMax.Text = "上限";
             this.chkStringMax.UseVisualStyleBackColor = true;
-            this.chkStringMax.CheckedChanged += new System.EventHandler(this.chkStringMax_CheckedChanged);
+            this.chkStringMax.CheckedChanged += new System.EventHandler(this.ChkStringMax_CheckedChanged);
             // 
             // numStringMax
             // 
@@ -481,7 +481,7 @@
             this.numStringMax.Name = "numStringMax";
             this.numStringMax.Size = new System.Drawing.Size(31, 19);
             this.numStringMax.TabIndex = 2;
-            this.numStringMax.ValueChanged += new System.EventHandler(this.numStringMax_ValueChanged);
+            this.numStringMax.ValueChanged += new System.EventHandler(this.NumStringMax_ValueChanged);
             // 
             // chkIgnoreCase
             // 
@@ -495,7 +495,7 @@
             this.chkIgnoreCase.Text = "A=a";
             this.toolTip1.SetToolTip(this.chkIgnoreCase, "大文字小文字を区別しない");
             this.chkIgnoreCase.UseVisualStyleBackColor = true;
-            this.chkIgnoreCase.CheckedChanged += new System.EventHandler(this.chkIgnoreCase_CheckedChanged);
+            this.chkIgnoreCase.CheckedChanged += new System.EventHandler(this.ChkIgnoreCase_CheckedChanged);
             // 
             // cmbString
             // 
@@ -507,7 +507,7 @@
             this.cmbString.Name = "cmbString";
             this.cmbString.Size = new System.Drawing.Size(140, 20);
             this.cmbString.TabIndex = 1;
-            this.cmbString.SelectedIndexChanged += new System.EventHandler(this.cmbString_SelectedIndexChanged);
+            this.cmbString.SelectedIndexChanged += new System.EventHandler(this.CmbString_SelectedIndexChanged);
             // 
             // txtString
             // 
@@ -521,7 +521,7 @@
             this.txtString.Size = new System.Drawing.Size(181, 25);
             this.txtString.TabIndex = 0;
             this.txtString.WordWrap = false;
-            this.txtString.TextChanged += new System.EventHandler(this.txtString_TextChanged);
+            this.txtString.TextChanged += new System.EventHandler(this.TxtString_TextChanged);
             // 
             // lblMessage
             // 
@@ -576,21 +576,21 @@
             this.removeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(191, 254);
-            this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
+            this.contextMenuStrip1.Opened += new System.EventHandler(this.ContextMenuStrip1_Opened);
             // 
             // exportToFileToolStripMenuItem
             // 
             this.exportToFileToolStripMenuItem.Name = "exportToFileToolStripMenuItem";
             this.exportToFileToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.exportToFileToolStripMenuItem.Text = "ファイルに保存";
-            this.exportToFileToolStripMenuItem.Click += new System.EventHandler(this.exportToFileToolStripMenuItem_Click);
+            this.exportToFileToolStripMenuItem.Click += new System.EventHandler(this.ExportToFileToolStripMenuItem_Click);
             // 
             // importFromFileToolStripMenuItem
             // 
             this.importFromFileToolStripMenuItem.Name = "importFromFileToolStripMenuItem";
             this.importFromFileToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.importFromFileToolStripMenuItem.Text = "ファイルから読み込み";
-            this.importFromFileToolStripMenuItem.Click += new System.EventHandler(this.importFromFileToolStripMenuItem_Click);
+            this.importFromFileToolStripMenuItem.Click += new System.EventHandler(this.ImportFromFileToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -602,14 +602,14 @@
             this.exportToClipBoardToolStripMenuItem.Name = "exportToClipBoardToolStripMenuItem";
             this.exportToClipBoardToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.exportToClipBoardToolStripMenuItem.Text = "クリップボードにコピー";
-            this.exportToClipBoardToolStripMenuItem.Click += new System.EventHandler(this.exportToClipBoardToolStripMenuItem_Click);
+            this.exportToClipBoardToolStripMenuItem.Click += new System.EventHandler(this.ExportToClipBoardToolStripMenuItem_Click);
             // 
             // importFromClipBoardToolStripMenuItem
             // 
             this.importFromClipBoardToolStripMenuItem.Name = "importFromClipBoardToolStripMenuItem";
             this.importFromClipBoardToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.importFromClipBoardToolStripMenuItem.Text = "クリップボードから貼り付け";
-            this.importFromClipBoardToolStripMenuItem.Click += new System.EventHandler(this.importFromClipBoardToolStripMenuItem_Click);
+            this.importFromClipBoardToolStripMenuItem.Click += new System.EventHandler(this.ImportFromClipBoardToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -621,14 +621,14 @@
             this.addChildToolStripMenuItem.Name = "addChildToolStripMenuItem";
             this.addChildToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.addChildToolStripMenuItem.Text = "サブフィルタを追加";
-            this.addChildToolStripMenuItem.Click += new System.EventHandler(this.addChildToolStripMenuItem_Click);
+            this.addChildToolStripMenuItem.Click += new System.EventHandler(this.AddChildToolStripMenuItem_Click);
             // 
             // addBrotherToolStripMenuItem
             // 
             this.addBrotherToolStripMenuItem.Name = "addBrotherToolStripMenuItem";
             this.addBrotherToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.addBrotherToolStripMenuItem.Text = "同列のフィルタを追加";
-            this.addBrotherToolStripMenuItem.Click += new System.EventHandler(this.addBrotherToolStripMenuItem_Click);
+            this.addBrotherToolStripMenuItem.Click += new System.EventHandler(this.AddBrotherToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -640,14 +640,14 @@
             this.upToolStripMenuItem.Name = "upToolStripMenuItem";
             this.upToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.upToolStripMenuItem.Text = "順序をひとつ上へ";
-            this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
+            this.upToolStripMenuItem.Click += new System.EventHandler(this.UpToolStripMenuItem_Click);
             // 
             // downToolStripMenuItem
             // 
             this.downToolStripMenuItem.Name = "downToolStripMenuItem";
             this.downToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.downToolStripMenuItem.Text = "順序をひとつ下へ";
-            this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
+            this.downToolStripMenuItem.Click += new System.EventHandler(this.DownToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -659,7 +659,7 @@
             this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
             this.sortToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.sortToolStripMenuItem.Text = "サブフィルタの並び替え";
-            this.sortToolStripMenuItem.Click += new System.EventHandler(this.sortToolStripMenuItem_Click);
+            this.sortToolStripMenuItem.Click += new System.EventHandler(this.SortToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -671,7 +671,7 @@
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
             this.removeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.removeToolStripMenuItem.Text = "このフィルタを削除";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.RemoveToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 

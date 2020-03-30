@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 using MifuminLib;
 using MifuminLib.AccessAnalyzer;
@@ -38,7 +38,7 @@ namespace Namalyzer
             }
         }
 
-        private void copyTextToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CopyTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SafeClipboard.SetText(dgvLog.SelectedCells[0].Value);
         }
@@ -48,11 +48,13 @@ namespace Namalyzer
         private void FormList_FormClosed(object sender, FormClosedEventArgs e)
         { ((FormMain)MdiParent).LogData.RemoveUpdateFunc(UpdateFunc); }
 
-        private void detailFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DetailFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormFilter f = new FormFilter();
-            f.Filter = Filter;
-            f.Text = "詳細フィルタ編集";
+            FormFilter f = new FormFilter
+            {
+                Filter = Filter,
+                Text = "詳細フィルタ編集"
+            };
             if (f.ShowDialog(this) == DialogResult.OK) Filter = f.Filter;
         }
     }
