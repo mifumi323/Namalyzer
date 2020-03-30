@@ -1,9 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 using MifuminLib;
 using MifuminLib.AccessAnalyzer;
 using System.Linq;
@@ -116,13 +113,15 @@ namespace Namalyzer
 
         TreeNode CreateTreeNode(LogFilter filter)
         {
-            TreeNode node = new TreeNode();
-            node.ContextMenuStrip = contextMenuStrip1;
+            TreeNode node = new TreeNode
+            {
+                ContextMenuStrip = contextMenuStrip1
+            };
             SetFilter(node, filter);
             return node;
         }
 
-        private void trvFilter_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TrvFilter_AfterSelect(object sender, TreeViewEventArgs e)
         {
             selectedNode = e.Node;
             LogFilter selected = (LogFilter)selectedNode.Tag;
@@ -269,7 +268,7 @@ namespace Namalyzer
             control.Show();
         }
 
-        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var parentFilter = (LogFilterCollection)trvFilter.SelectedNode.Parent.Tag;
             var parentNode = trvFilter.SelectedNode.Parent;
@@ -299,7 +298,7 @@ namespace Namalyzer
             return true;
         }
 
-        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        private void ContextMenuStrip1_Opened(object sender, EventArgs e)
         {
             trvFilter.SelectedNode = selectedNode;
             if (selectedNode.Parent == null)
@@ -340,17 +339,17 @@ namespace Namalyzer
             }
         }
 
-        private void trvFilter_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        private void TrvFilter_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
         {
             selectedNode = e.Node;
         }
 
-        private void btnAction_Click(object sender, EventArgs e)
+        private void BtnAction_Click(object sender, EventArgs e)
         {
             contextMenuStrip1.Show(btnAction, 0, btnAction.Height);
         }
 
-        private void trvFilter_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        private void TrvFilter_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
             ;
         }
@@ -363,7 +362,7 @@ namespace Namalyzer
                 , "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             // フィルタの種類がどのように変化したのか判断する
             if (cmbFilter.SelectedIndex < 0) return;
@@ -410,16 +409,16 @@ namespace Namalyzer
             }
         }
 
-        private void exportToClipBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExportToClipBoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SafeClipboard.SetText(SelectedFilter.ToXmlString());
         }
 
-        private void importFromClipBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ImportFromClipBoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Clipboard.ContainsText())
             {
-                LogFilter filter = null;
+                LogFilter filter;
                 try
                 {
                     filter = LogFilter.FromXmlString(Clipboard.GetText());
@@ -442,7 +441,7 @@ namespace Namalyzer
             }
         }
 
-        private void exportToFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExportToFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveFileDialog1.FileName = "";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -451,7 +450,7 @@ namespace Namalyzer
             }
         }
 
-        private void importFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ImportFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -495,7 +494,7 @@ namespace Namalyzer
             }
         }
 
-        private void txtString_TextChanged(object sender, EventArgs e)
+        private void TxtString_TextChanged(object sender, EventArgs e)
         {
             LogFilterString strfilter = GetLogFilterString();
             if (strfilter == null) return;
@@ -503,7 +502,7 @@ namespace Namalyzer
             trvFilter.SelectedNode.Text = strfilter.ToString();
         }
 
-        private void cmbString_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbString_SelectedIndexChanged(object sender, EventArgs e)
         {
             LogFilterString strfilter = GetLogFilterString();
             if (strfilter == null) return;
@@ -512,14 +511,14 @@ namespace Namalyzer
             txtString.Enabled = !(tlpStringLength.Enabled = strfilter.matchRule == LogFilterString.MatchRule.Length);
         }
 
-        private void chkIgnoreCase_CheckedChanged(object sender, EventArgs e)
+        private void ChkIgnoreCase_CheckedChanged(object sender, EventArgs e)
         {
             LogFilterString strfilter = GetLogFilterString();
             if (strfilter == null) return;
             strfilter.IgnoreCase = chkIgnoreCase.Checked;
         }
 
-        private void chkStringMin_CheckedChanged(object sender, EventArgs e)
+        private void ChkStringMin_CheckedChanged(object sender, EventArgs e)
         {
             LogFilterString strfilter = GetLogFilterString();
             if (strfilter == null) return;
@@ -530,7 +529,7 @@ namespace Namalyzer
             trvFilter.SelectedNode.Text = strfilter.ToString();
         }
 
-        private void chkStringMax_CheckedChanged(object sender, EventArgs e)
+        private void ChkStringMax_CheckedChanged(object sender, EventArgs e)
         {
             LogFilterString strfilter = GetLogFilterString();
             if (strfilter == null) return;
@@ -541,7 +540,7 @@ namespace Namalyzer
             trvFilter.SelectedNode.Text = strfilter.ToString();
         }
 
-        private void numStringMin_ValueChanged(object sender, EventArgs e)
+        private void NumStringMin_ValueChanged(object sender, EventArgs e)
         {
             LogFilterString strfilter = GetLogFilterString();
             if (strfilter == null) return;
@@ -551,7 +550,7 @@ namespace Namalyzer
             trvFilter.SelectedNode.Text = strfilter.ToString();
         }
 
-        private void numStringMax_ValueChanged(object sender, EventArgs e)
+        private void NumStringMax_ValueChanged(object sender, EventArgs e)
         {
             LogFilterString strfilter = GetLogFilterString();
             if (strfilter == null) return;
@@ -580,7 +579,7 @@ namespace Namalyzer
             }
         }
 
-        private void chkDateStart_CheckedChanged(object sender, EventArgs e)
+        private void ChkDateStart_CheckedChanged(object sender, EventArgs e)
         {
             LogFilterDate datfilter = GetLogFilterDate();
             if (datfilter == null) return;
@@ -591,7 +590,7 @@ namespace Namalyzer
             lblDate.Text = trvFilter.SelectedNode.Text = datfilter.ToString();
         }
 
-        private void chkDateEnd_CheckedChanged(object sender, EventArgs e)
+        private void ChkDateEnd_CheckedChanged(object sender, EventArgs e)
         {
             LogFilterDate datfilter = GetLogFilterDate();
             if (datfilter == null) return;
@@ -602,7 +601,7 @@ namespace Namalyzer
             lblDate.Text = trvFilter.SelectedNode.Text = datfilter.ToString();
         }
 
-        private void dtpDateStart_ValueChanged(object sender, EventArgs e)
+        private void DtpDateStart_ValueChanged(object sender, EventArgs e)
         {
             LogFilterDate datfilter = GetLogFilterDate();
             if (datfilter == null) return;
@@ -612,7 +611,7 @@ namespace Namalyzer
             lblDate.Text = trvFilter.SelectedNode.Text = datfilter.ToString();
         }
 
-        private void dtpDateEnd_ValueChanged(object sender, EventArgs e)
+        private void DtpDateEnd_ValueChanged(object sender, EventArgs e)
         {
             LogFilterDate datfilter = GetLogFilterDate();
             if (datfilter == null) return;
@@ -641,7 +640,7 @@ namespace Namalyzer
             }
         }
 
-        private void chkNumberMax_CheckedChanged(object sender, EventArgs e)
+        private void ChkNumberMax_CheckedChanged(object sender, EventArgs e)
         {
             LogFilterNumber numfilter = GetLogFilterNumber();
             if (numfilter == null) return;
@@ -652,7 +651,7 @@ namespace Namalyzer
             lblNumber.Text = trvFilter.SelectedNode.Text = numfilter.ToString();
         }
 
-        private void chkNumberMin_CheckedChanged(object sender, EventArgs e)
+        private void ChkNumberMin_CheckedChanged(object sender, EventArgs e)
         {
             LogFilterNumber numfilter = GetLogFilterNumber();
             if (numfilter == null) return;
@@ -663,7 +662,7 @@ namespace Namalyzer
             lblNumber.Text = trvFilter.SelectedNode.Text = numfilter.ToString();
         }
 
-        private void numNumberMax_ValueChanged(object sender, EventArgs e)
+        private void NumNumberMax_ValueChanged(object sender, EventArgs e)
         {
             LogFilterNumber numfilter = GetLogFilterNumber();
             if (numfilter == null) return;
@@ -673,7 +672,7 @@ namespace Namalyzer
             lblNumber.Text = trvFilter.SelectedNode.Text = numfilter.ToString();
         }
 
-        private void numNumberMin_ValueChanged(object sender, EventArgs e)
+        private void NumNumberMin_ValueChanged(object sender, EventArgs e)
         {
             LogFilterNumber numfilter = GetLogFilterNumber();
             if (numfilter == null) return;
@@ -702,7 +701,7 @@ namespace Namalyzer
             }
         }
 
-        private void clbEnum_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void ClbEnum_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             LogFilterEnum enumfilter = GetLogFilterEnum();
             if (enumfilter == null) return;
@@ -714,18 +713,18 @@ namespace Namalyzer
 
         #region CollectionFilter
 
-        private void lstCollection_DoubleClick(object sender, EventArgs e)
+        private void LstCollection_DoubleClick(object sender, EventArgs e)
         {
             btnEditSub.PerformClick();
         }
 
-        private void btnEditSub_Click(object sender, EventArgs e)
+        private void BtnEditSub_Click(object sender, EventArgs e)
         {
             if (lstCollection.SelectedIndex < 0) return;
             trvFilter.SelectedNode = trvFilter.SelectedNode.Nodes[lstCollection.SelectedIndex];
         }
 
-        private void btnAddSub_Click(object sender, EventArgs e)
+        private void BtnAddSub_Click(object sender, EventArgs e)
         {
             LogFilterCollection target = (LogFilterCollection)SelectedFilter;
             LogFilter[] subFilter = new LogFilter[target.subFilter.Length + 1];
@@ -736,7 +735,7 @@ namespace Namalyzer
             trvFilter.SelectedNode = trvFilter.SelectedNode.Nodes[subFilter.Length - 1];
         }
 
-        private void btnRemoveSub_Click(object sender, EventArgs e)
+        private void BtnRemoveSub_Click(object sender, EventArgs e)
         {
             if (lstCollection.SelectedIndex < 0) return;
             var filter = (LogFilter)trvFilter.SelectedNode.Nodes[lstCollection.SelectedIndex].Tag;
@@ -750,12 +749,12 @@ namespace Namalyzer
             }
         }
 
-        private void addChildToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddChildToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btnAddSub.PerformClick();
         }
 
-        private void addBrotherToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddBrotherToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode parent = trvFilter.SelectedNode.Parent;
             LogFilterCollection target = (LogFilterCollection)parent.Tag;
@@ -769,7 +768,7 @@ namespace Namalyzer
         
         #endregion
 
-        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode node = trvFilter.SelectedNode.PrevNode;
             if (node == null) return;
@@ -779,7 +778,7 @@ namespace Namalyzer
             trvFilter.SelectedNode = node;
         }
 
-        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode node = trvFilter.SelectedNode.NextNode;
             if (node == null) return;
@@ -789,7 +788,7 @@ namespace Namalyzer
             trvFilter.SelectedNode = node;
         }
 
-        private void sortToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SortToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!typeof(LogFilterCollection).IsInstanceOfType(SelectedFilter)) return;
             LogFilterCollection filter = (LogFilterCollection)SelectedFilter;

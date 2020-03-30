@@ -189,12 +189,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NamalyzerLib\NamalyzerLib.csproj">
-      <Project>{6cb4e11e-2cd9-4d7a-beb8-73281dff0187}</Project>
-      <Name>NamalyzerLib</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace MifuminLib
+﻿namespace MifuminLib
 {
     /// <summary>ToStringで好きな文字列を返せるようにする</summary>
     /// <typeparam name="T">対象のオブジェクトの型</typeparam>
     class AliasObject<T>
     {
-        T obj;
-        string name;
+        readonly T obj;
+        readonly string name;
 
         public AliasObject(T obj, string name)
         {

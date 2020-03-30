@@ -80,14 +80,14 @@
             this.copyTextToolStripMenuItem.Name = "copyTextToolStripMenuItem";
             this.copyTextToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.copyTextToolStripMenuItem.Text = "Copy Text";
-            this.copyTextToolStripMenuItem.Click += new System.EventHandler(this.copyTextToolStripMenuItem_Click);
+            this.copyTextToolStripMenuItem.Click += new System.EventHandler(this.CopyTextToolStripMenuItem_Click);
             // 
             // lowerLimitToolStripMenuItem
             // 
             this.lowerLimitToolStripMenuItem.Name = "lowerLimitToolStripMenuItem";
             this.lowerLimitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.lowerLimitToolStripMenuItem.Text = "n件以上の項目のみ表示";
-            this.lowerLimitToolStripMenuItem.Click += new System.EventHandler(this.lowerLimitToolStripMenuItem_Click);
+            this.lowerLimitToolStripMenuItem.Click += new System.EventHandler(this.LowerLimitToolStripMenuItem_Click);
             // 
             // btnFilter
             // 
@@ -99,7 +99,7 @@
             this.btnFilter.TabIndex = 1;
             this.btnFilter.Text = "フィルタ編集";
             this.btnFilter.UseVisualStyleBackColor = true;
-            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            this.btnFilter.Click += new System.EventHandler(this.BtnFilter_Click);
             // 
             // contextMenuStrip2
             // 
@@ -114,7 +114,7 @@
             this.ignoreCaseToolStripMenuItem.Name = "ignoreCaseToolStripMenuItem";
             this.ignoreCaseToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ignoreCaseToolStripMenuItem.Text = "大文字小文字を無視";
-            this.ignoreCaseToolStripMenuItem.Click += new System.EventHandler(this.ignoreCaseToolStripMenuItem_Click);
+            this.ignoreCaseToolStripMenuItem.Click += new System.EventHandler(this.IgnoreCaseToolStripMenuItem_Click);
             // 
             // urldecodeToolStripMenuItem
             // 
@@ -124,7 +124,7 @@
             this.urldecodeToolStripMenuItem.Name = "urldecodeToolStripMenuItem";
             this.urldecodeToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.urldecodeToolStripMenuItem.Text = "URLデコード";
-            this.urldecodeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.urldecodeToolStripMenuItem_DropDownOpening);
+            this.urldecodeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.UrldecodeToolStripMenuItem_DropDownOpening);
             // 
             // urlnodecodeToolStripMenuItem
             // 
@@ -133,7 +133,7 @@
             this.urlnodecodeToolStripMenuItem.Name = "urlnodecodeToolStripMenuItem";
             this.urlnodecodeToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.urlnodecodeToolStripMenuItem.Text = "しない";
-            this.urlnodecodeToolStripMenuItem.Click += new System.EventHandler(this.urlnodecodeToolStripMenuItem_Click);
+            this.urlnodecodeToolStripMenuItem.Click += new System.EventHandler(this.UrlnodecodeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -221,7 +221,7 @@
             this.btnView.TabIndex = 0;
             this.btnView.Text = "表示";
             this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             // 
             // cmsView
             // 

@@ -10,10 +10,12 @@ namespace MifuminLib
             InitializeComponent();
         }
 
-        static public decimal Show(IWin32Window owner, string message, decimal minimum, decimal maximum, decimal value)
+        public static decimal Show(IWin32Window owner, string message, decimal minimum, decimal maximum, decimal value)
         {
-            NumberInputBox form = new NumberInputBox();
-            form.Text = message;
+            NumberInputBox form = new NumberInputBox
+            {
+                Text = message
+            };
             form.numericUpDown1.Minimum = minimum;
             form.numericUpDown1.Maximum = maximum;
             form.numericUpDown1.Value = value;

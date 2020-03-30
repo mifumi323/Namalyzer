@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -29,7 +29,7 @@ namespace Namalyzer
             get { return filter; }
             set
             {
-                filter = value != null ? value : new LogFilterAll();
+                filter = value ?? new LogFilterAll();
                 btnFilter.Text = "フィルタ：" + filter.ToString();
                 if (original != null) UpdateFunc(original);
             }
@@ -50,11 +50,13 @@ namespace Namalyzer
             Filter = new LogFilterAll();
         }
 
-        private void btnFilter_Click(object sender, EventArgs e)
+        private void BtnFilter_Click(object sender, EventArgs e)
         {
-            FormFilter f = new FormFilter();
-            f.Filter = Filter;
-            f.Text = "詳細フィルタ編集";
+            FormFilter f = new FormFilter
+            {
+                Filter = Filter,
+                Text = "詳細フィルタ編集"
+            };
             if (f.ShowDialog(this) == DialogResult.OK) Filter = f.Filter;
         }
 
@@ -71,31 +73,12 @@ namespace Namalyzer
             }
         }
 
-        private void UpdateGridView<T>(KeyValuePair<T, int>[] c)
-        {
-            dgvRank.RowCount = c.Length;
-            int sum = 0, max = 1;
-            foreach (KeyValuePair<T, int> v in c) { sum += v.Value; if (max < v.Value) max = v.Value; }
-            string f = 100 * sum / max >= 10 ? "0.0" : "0.00";
-            int val, prev = -1;
-            for (int i = 0; i < c.Length; i++)
-            {
-                val = c[i].Value;
-                dgvRank[0, i].Value = (val == prev ? dgvRank[0, i - 1].Value : (i + 1).ToString() + "位");
-                dgvRank[1, i].Value = c[i].Key;
-                dgvRank[2, i].Value = val;
-                dgvRank[3, i].Value = (100.0 * val / sum).ToString(f) + "%";
-                dgvRank[4, i].Value = new string('+', 10 * val / max);
-                prev = val;
-            }
-        }
-
         private void FormStatistics_Shown(object sender, EventArgs e)
         { ((FormMain)MdiParent).LogData.AddUpdateFunc(UpdateFunc); }
         private void FormStatistics_FormClosed(object sender, FormClosedEventArgs e)
         { ((FormMain)MdiParent).LogData.RemoveUpdateFunc(UpdateFunc); }
 
-        private void copyTextToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CopyTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             object text = null;
             if (dgvRank.Visible) text = dgvRank.SelectedCells[0].Value;
@@ -137,8 +120,10 @@ namespace Namalyzer
 
         private void AddUpdateFunc(string name, UpdateFunc func)
         {
-            ToolStripMenuItem item = new ToolStripMenuItem(name, null, new EventHandler(changeViewToolStripMenuItem_Click));
-            item.Tag = func;
+            ToolStripMenuItem item = new ToolStripMenuItem(name, null, new EventHandler(ChangeViewToolStripMenuItem_Click))
+            {
+                Tag = func
+            };
             cmsView.Items.Add(item);
         }
 
@@ -410,8 +395,7 @@ namespace Namalyzer
 
             Dictionary<Log.EMethod, int> d = new Dictionary<Log.EMethod, int>();
 
-            int val;
-            foreach (Log l in logs) d[l.Method] = d.TryGetValue(l.Method, out val) ? val + 1 : 1;
+            foreach (Log l in logs) d[l.Method] = d.TryGetValue(l.Method, out int val) ? val + 1 : 1;
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -447,8 +431,7 @@ namespace Namalyzer
 
             Dictionary<short, int> d = new Dictionary<short, int>();
 
-            int val;
-            foreach (Log l in logs) d[l.Status] = d.TryGetValue(l.Status, out val) ? val + 1 : 1;
+            foreach (Log l in logs) d[l.Status] = d.TryGetValue(l.Status, out int val) ? val + 1 : 1;
             UpdateGridView(d);
 
             EndUpdate(dgvRank);
@@ -612,10 +595,9 @@ namespace Namalyzer
 
         public void IncrementDictionary(Dictionary<string, int> d, string value)
         {
-            int num;
             if (urldecode) value = System.Web.HttpUtility.UrlDecode(value, urlencoding);
             if (ignorecase) value = value.ToLower();
-            d[value] = d.TryGetValue(value, out num) ? num + 1 : 1;
+            d[value] = d.TryGetValue(value, out int num) ? num + 1 : 1;
         }
 
         private class RankComparer<T> : IComparer<KeyValuePair<T, int>>
@@ -650,12 +632,12 @@ namespace Namalyzer
             tableLayoutPanel1.ResumeLayout();
         }
 
-        private void btnView_Click(object sender, EventArgs e)
+        private void BtnView_Click(object sender, EventArgs e)
         {
             cmsView.Show(btnView, 0, btnView.Height);
         }
 
-        private void changeViewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ChangeViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem ctrl = (ToolStripMenuItem)sender;
             foreach (ToolStripMenuItem var in cmsView.Items)
@@ -667,13 +649,13 @@ namespace Namalyzer
             CallUpdateFunc(logs);
         }
 
-        private void ignoreCaseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IgnoreCaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ignoreCaseToolStripMenuItem.Checked = ignorecase = !ignorecase;
             CallUpdateFunc(logs);
         }
 
-        private void lowerLimitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LowerLimitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetLowerLimit((int)NumberInputBox.Show(
                 this,
@@ -685,7 +667,7 @@ namespace Namalyzer
             CallUpdateFunc(logs);
         }
 
-        private void urldecodeToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        private void UrldecodeToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             if (!urldecodemenuopened)
             {
@@ -694,9 +676,11 @@ namespace Namalyzer
                 ToolStripMenuItem[] mis = new ToolStripMenuItem[eis.Length];
                 for (int i = 0; i < eis.Length; i++)
                 {
-                    mis[i] = new ToolStripMenuItem(eis[i].DisplayName);
-                    mis[i].Tag = eis[i].CodePage;
-                    mis[i].Click += urldecodeToolStripMenuItem_Click;
+                    mis[i] = new ToolStripMenuItem(eis[i].DisplayName)
+                    {
+                        Tag = eis[i].CodePage
+                    };
+                    mis[i].Click += UrldecodeToolStripMenuItem_Click;
                 }
                 urldecodeToolStripMenuItem.DropDownItems.AddRange(mis);
                 selectedurldecodemenu = urlnodecodeToolStripMenuItem;
@@ -704,7 +688,7 @@ namespace Namalyzer
             }
         }
 
-        private void urldecodeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UrldecodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem menu = (ToolStripMenuItem)sender;
             selectedurldecodemenu.Checked = false;
@@ -715,7 +699,7 @@ namespace Namalyzer
             CallUpdateFunc(logs);
         }
 
-        private void urlnodecodeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UrlnodecodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedurldecodemenu.Checked = false;
             urlnodecodeToolStripMenuItem.Checked = true;

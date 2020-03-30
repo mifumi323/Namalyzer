@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MifuminLib.AccessAnalyzer;
@@ -15,23 +15,22 @@ namespace Namalyzer
         {
             public ExplorerItem()
             {
-                item = new ListViewItem();
-                item.SubItems.Add("");
-                item.SubItems.Add("");
+                Item = new ListViewItem();
+                Item.SubItems.Add("");
+                Item.SubItems.Add("");
                 FileName = "";
             }
 
             public void Update(ListViewGroupCollection groups)
             {
-                item.ImageIndex = (fileName.EndsWith("/") ? 0 : 3) + (statusCode / 100 == 2 ? 0 : (statusCode / 100 < 4 ? 1 : 2));
-                item.SubItems[0].Text = fileName;
-                item.SubItems[1].Text = requestNumber.ToString();
-                item.SubItems[2].Text = statusCode.ToString() + "(" + (100 * statusRate / requestNumber) + "%)";
-                item.Group = groups[fileName.EndsWith("/") ? 0 : 1];
+                Item.ImageIndex = (fileName.EndsWith("/") ? 0 : 3) + (statusCode / 100 == 2 ? 0 : (statusCode / 100 < 4 ? 1 : 2));
+                Item.SubItems[0].Text = fileName;
+                Item.SubItems[1].Text = requestNumber.ToString();
+                Item.SubItems[2].Text = statusCode.ToString() + "(" + (100 * statusRate / requestNumber) + "%)";
+                Item.Group = groups[fileName.EndsWith("/") ? 0 : 1];
             }
 
-            private ListViewItem item;
-            public ListViewItem Item { get { return item; } }
+            public ListViewItem Item { get; }
 
             private string fileName;
             public string FileName { get { return fileName; } set { fileName = value; } }
@@ -71,7 +70,7 @@ namespace Namalyzer
             InitializeComponent();
         }
 
-        private void tsbViewLargeIcon_Click(object sender, EventArgs e)
+        private void TsbViewLargeIcon_Click(object sender, EventArgs e)
         {
             lsvExplorer.View = View.LargeIcon;
             tsbViewLargeIcon.Checked = true;
@@ -81,7 +80,7 @@ namespace Namalyzer
             tsbViewTile.Checked = false;
         }
 
-        private void tsbViewDetails_Click(object sender, EventArgs e)
+        private void TsbViewDetails_Click(object sender, EventArgs e)
         {
             lsvExplorer.View = View.Details;
             tsbViewLargeIcon.Checked = false;
@@ -91,7 +90,7 @@ namespace Namalyzer
             tsbViewTile.Checked = false;
         }
 
-        private void tsbViewSmallIcon_Click(object sender, EventArgs e)
+        private void TsbViewSmallIcon_Click(object sender, EventArgs e)
         {
             lsvExplorer.View = View.SmallIcon;
             tsbViewLargeIcon.Checked = false;
@@ -101,7 +100,7 @@ namespace Namalyzer
             tsbViewTile.Checked = false;
         }
 
-        private void tsbViewList_Click(object sender, EventArgs e)
+        private void TsbViewList_Click(object sender, EventArgs e)
         {
             lsvExplorer.View = View.List;
             tsbViewLargeIcon.Checked = false;
@@ -111,7 +110,7 @@ namespace Namalyzer
             tsbViewTile.Checked = false;
         }
 
-        private void tsbViewTile_Click(object sender, EventArgs e)
+        private void TsbViewTile_Click(object sender, EventArgs e)
         {
             lsvExplorer.View = View.Tile;
             tsbViewLargeIcon.Checked = false;
@@ -146,7 +145,6 @@ namespace Namalyzer
                 req = log.Requested;
                 if (req.Length >= directory.Length && req.StartsWith(directory))
                 {
-                    Dictionary<short, int> status;
                     fileName = req.Substring(dirLength);
                     i1 = fileName.IndexOf('?');
                     i2 = fileName.IndexOf('/') + 1;
@@ -159,7 +157,7 @@ namespace Namalyzer
                     {
                         if (i2 > 0) fileName = fileName.Substring(0, i2);
                     }
-                    if (!dic.TryGetValue(fileName, out status)) dic.Add(fileName, status = new Dictionary<short, int>());
+                    if (!dic.TryGetValue(fileName, out Dictionary<short, int> status)) dic.Add(fileName, status = new Dictionary<short, int>());
                     if (status.ContainsKey(log.Status)) status[log.Status]++;
                     else status.Add(log.Status, 1);
                 }
@@ -179,11 +177,13 @@ namespace Namalyzer
                     }
                     arq += rq;
                 }
-                items[i] = new ExplorerItem();
-                items[i].FileName = d.Key;
-                items[i].RequestNumber = arq;
-                items[i].StatusCode = msc;
-                items[i].StatusRate = mrq;
+                items[i] = new ExplorerItem
+                {
+                    FileName = d.Key,
+                    RequestNumber = arq,
+                    StatusCode = msc,
+                    StatusRate = mrq
+                };
                 items[i].Update(lsvExplorer.Groups);
                 i++;
             }
@@ -194,7 +194,7 @@ namespace Namalyzer
         private void FormExplorer_Load(object sender, EventArgs e)
         {
             LogData.AddUpdateFunc(UpdateFunc);
-            tsbViewLargeIcon_Click(null, null);
+            TsbViewLargeIcon_Click(null, null);
         }
 
         private void FormExplorer_FormClosed(object sender, FormClosedEventArgs e)
@@ -202,7 +202,7 @@ namespace Namalyzer
             LogData.RemoveUpdateFunc(UpdateFunc);
         }
 
-        private void lsvExplorer_DoubleClick(object sender, EventArgs e)
+        private void LsvExplorer_DoubleClick(object sender, EventArgs e)
         {
             string sel = lsvExplorer.SelectedItems[0].Text;
             string next = directory + sel;
@@ -211,8 +211,10 @@ namespace Namalyzer
             {
                 FormStatistics f = new FormStatistics();
                 LogFilterRequested l1 = new LogFilterRequested(), l2 = new LogFilterRequested();
-                LogFilterOr lf = new LogFilterOr();
-                lf.subFilter = new LogFilter[] { l1, l2 };
+                LogFilterOr lf = new LogFilterOr
+                {
+                    subFilter = new LogFilter[] { l1, l2 }
+                };
                 l1.Matches = next;
                 l1.matchRule = LogFilterString.MatchRule.Match;
                 l2.Matches = next + "?";
@@ -223,12 +225,12 @@ namespace Namalyzer
             }
         }
 
-        private void tsbUpDirectory_Click(object sender, EventArgs e)
+        private void TsbUpDirectory_Click(object sender, EventArgs e)
         {
             if (directory.Length > 1) Explore(directory.Substring(0, directory.LastIndexOf('/', directory.Length - 2) + 1));
         }
 
-        private void lsvExplorer_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void LsvExplorer_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             switch (e.Column)
             {
