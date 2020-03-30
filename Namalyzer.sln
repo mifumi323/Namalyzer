@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namalyzer", "Namalyzer\Nama
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12894D19-EAD4-46D0-814A-B29C1D8FBC1C}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		readme.txt = readme.txt
 	EndProjectSection
 EndProject
@@ -20,10 +21,6 @@ Global
 		{2A9EDEFB-4C92-440B-A6F8-32FD7AF7D06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A9EDEFB-4C92-440B-A6F8-32FD7AF7D06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A9EDEFB-4C92-440B-A6F8-32FD7AF7D06E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CB4E11E-2CD9-4D7A-BEB8-73281DFF0187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CB4E11E-2CD9-4D7A-BEB8-73281DFF0187}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CB4E11E-2CD9-4D7A-BEB8-73281DFF0187}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CB4E11E-2CD9-4D7A-BEB8-73281DFF0187}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
