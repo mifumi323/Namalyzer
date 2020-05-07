@@ -529,7 +529,7 @@ namespace Namalyzer
 
             var d = new Dictionary<string, int>();
 
-            var refererAnalyzer = new SearchQueryParser();
+            var refererAnalyzer = new SearchQueryPicker();
             foreach (Log l in logs)
             {
                 if (l.Referer == null || l.Referer.Length < 8) continue;
