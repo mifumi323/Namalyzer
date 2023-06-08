@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29806.167
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namalyzer", "Namalyzer\Namalyzer.csproj", "{2A9EDEFB-4C92-440B-A6F8-32FD7AF7D06E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12894D19-EAD4-46D0-814A-B29C1D8FBC1C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.github\workflows\dotnet-desktop.yml = .github\workflows\dotnet-desktop.yml
 		readme.txt = readme.txt
 	EndProjectSection
 EndProject
