@@ -33,7 +33,7 @@ jobs:
       run: nuget restore $env:Solution_Name
 
     - name: Build
-      run: msbuild $env:Solution_Name /p:Configuration=Release -p:OutDir="out/"
+      run: msbuild $env:Solution_Name /p:Configuration=Release /p:DefineConstants=CI_BUILD -p:OutDir="out/"
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2

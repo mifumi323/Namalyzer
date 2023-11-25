@@ -19,6 +19,9 @@ namespace Namalyzer
         {
             InitializeComponent();
             LogData = new AccessLog();
+#if CI_BUILD
+            Text += "(CI Build)"; ;
+#endif
         }
 
         private void DeleteFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -264,7 +267,11 @@ namespace Namalyzer
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Application.ProductName + "\n" + Application.ProductVersion);
+            var msg = Application.ProductName + "\n" + Application.ProductVersion;
+#if CI_BUILD
+            msg += "\n(CI Build)"; ;
+#endif
+            MessageBox.Show(msg);
         }
     }
 }
